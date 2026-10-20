@@ -27,6 +27,13 @@ Plain HTML, CSS and vanilla JavaScript. There's no framework and no build step, 
 - Motion: by default the CSS shows the finished state. Animations run only under `.js` with `prefers-reduced-motion: no-preference`. Scroll-linked effects use `animation-timeline: view()` where the browser supports it, and a one-time timed fallback elsewhere.
 - `assets/img/og.png` (1200 x 630) was rendered from the home page's hero phone with Playwright and sharp. Only the PNG is committed.
 
+## Social video files
+
+`media/teaser/` holds the pre-launch social videos (end card: "Follow along.", no App Store badge). They're
+here only so Metricool can fetch them by URL when it publishes a scheduled post; no page links to them.
+The "Out now" cuts, which carry Apple's badge, go in `media/launch/` on launch day only, after the App
+Store listing is live. They're rendered in the marketing repo (`design/lockspot-growth/ads/`).
+
 ## Launch day (one commit)
 
 1. Confirm https://apps.apple.com/app/id6824683190 returns 200.
