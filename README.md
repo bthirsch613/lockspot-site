@@ -1,9 +1,9 @@
 # lockspot-site
 
 The public website for Lockspot, the iPhone focus app. GitHub Pages serves it at
-https://bthirsch613.github.io/lockspot-site/.
+https://getlockspot.com/ (the old https://bthirsch613.github.io/lockspot-site/ addresses redirect there).
 
-Two URLs must never move: the app's Settings screen opens `/privacy/`, and the app's share text links to the home page.
+Two URLs must never move: the app's Settings screen opens `/privacy/`, and the app's share text links to `/invite/` (builds before the invite page linked to the home page).
 
 | Page | Path |
 |---|---|
@@ -13,6 +13,7 @@ Two URLs must never move: the app's Settings screen opens `/privacy/`, and the a
 | Terms of use | `terms/index.html` |
 | Accessibility statement | `accessibility/index.html` |
 | Font licenses | `licenses/index.html` |
+| Friend invite (the app's share text links here; noindex and not in the sitemap) | `invite/index.html` |
 | Not found (absolute paths, because Pages serves it at any depth) | `404.html` |
 
 ## How it's built
@@ -22,7 +23,7 @@ Plain HTML, CSS and vanilla JavaScript. There's no framework and no build step, 
 - `assets/site.css` holds the shared styles. `assets/home.css` styles the home page, including the recreated app screens and all the motion.
 - `assets/site.js` is progressive enhancement only. Every page reads and works without it. It loads with `defer`. `assets/js-flag.js` is the only script that runs before first paint: it sets the `js` class, so keep it to that one line.
 - Fonts are self-hosted in `assets/fonts/`, with their OFL licenses next to them: Plus Jakarta Sans 500/600/700/800 (the app's `src/theme.ts` uses all four), and Anton for meme captions only. `tools/subset-fonts.mjs` made the Latin-subset WOFF2 files from the app repo's TTFs, using no dependencies. Anton is always drawn upper case, so it is cut with `--caps` to space through Z plus dashes, curly quotes and the ellipsis; keep `text-transform: uppercase` on anything set in Anton.
-- The CSP in each page's `<meta>` allows `'self'` only and no inline styles. Don't add `style=""` attributes or inline scripts.
+- The CSP in each page's `<meta>` allows `'self'` only and no inline styles. Don't add `style=""` attributes or inline scripts. One exception: `invite/index.html` has a single `<style>` block (its offer switch), allowed by its `sha256-` hash in that page's CSP. If you change the block, even its spacing, put the new hash in the CSP: `node -e "const c=require('fs').readFileSync('invite/index.html','utf8').match(/<style>([\s\S]*?)<\/style>/)[1];console.log(require('crypto').createHash('sha256').update(c).digest('base64'))"`. A stale hash blocks the style, and the page then shows its "isn't open" copy.
 - The header and footer are shared. To change them, edit `tools/sync-partials.mjs`, then run `node tools/sync-partials.mjs`, which rewrites the blocks between the `<!-- shared:header -->` and `<!-- shared:footer -->` markers on every page.
 - Motion: by default the CSS shows the finished state. Animations run only under `.js` with `prefers-reduced-motion: no-preference`. Scroll-linked effects use `animation-timeline: view()` where the browser supports it, and a one-time timed fallback elsewhere.
 - `assets/img/og.png` (1200 x 630) was rendered from the home page's hero phone with Playwright and sharp. Only the PNG is committed.
@@ -39,9 +40,10 @@ Store listing is live. They're rendered in the marketing repo (`design/lockspot-
 1. Confirm https://apps.apple.com/app/id6824683190 returns 200.
 2. Add Apple's official black "Download on the App Store" badge, en-US and unmodified (keep its gray border), from Apple's Marketing Resources, as `assets/badges/download-on-the-app-store.svg`. The hero badge draws it as a CSS background, so nothing is requested before launch.
 3. Save the App Store Marketing Tools QR code as `assets/img/app-store-qr.svg`. The "Scan with your iPhone" dialog uses it. Keep the QR code alone in its dialog: no mascot peeking over or around it.
-4. Only once steps 2 and 3 are in place, change `data-launched="false"` to `data-launched="true"` on every page (`sed -i 's/data-launched="false"/data-launched="true"/' index.html */index.html 404.html`). This shows the hero badge, turns every other call to action into "Get Lockspot on the App Store", and switches the footer credit line to the version that includes the Apple logo. Flipping it first would show an empty badge and a blank QR code.
+4. Only once steps 2 and 3 are in place, change `data-launched="false"` to `data-launched="true"` on every page except `invite/index.html`, which waits for step 7 (`sed -i 's/data-launched="false"/data-launched="true"/' index.html $(ls */index.html | grep -v '^invite/') 404.html`). This shows the hero badge, turns every other call to action into "Get Lockspot on the App Store", and switches the footer credit line to the version that includes the Apple logo. Flipping it first would show an empty badge and a blank QR code.
 5. Add `installUrl` to the JSON-LD in `index.html`. If you add `offers`, use the live US prices from App Store Connect (Lockspot Pro: 29.99 USD a year, 6.99 USD a month), never a price of 0, and no ratings.
 6. Bump `lastmod` in `sitemap.xml`.
+7. Later, only after `LOCKINWITHME` redeems (app repo, `docs/INVITE-GIFT.md`, "The custom code", step 4): on `invite/index.html`, set `data-offer="live"` and `data-launched="true"`. Until then the page never mentions a free month, whatever the launch state. The Claim button follows `data-offer` only, so if the code is days away you can flip the page's `data-launched` early; that adds just the header Get button and a plain App Store link. To pause the offer later, set `data-offer="paused"`: the Claim button goes and the page says the free month is paused. Never set `data-launched` back to `"false"` after launch.
 
 Don't add Apple's Smart App Banner (`<meta name="apple-itunes-app">`). It makes Safari ask Apple for the app's name, icon and rating on every page view, which would be the site's first third-party request and would contradict the privacy page. The badge and the QR code cover installs. If you ever add it, update `privacy/index.html` (#website and #third-parties) in the same commit.
 

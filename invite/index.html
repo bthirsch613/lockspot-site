@@ -1,0 +1,115 @@
+<!doctype html>
+<!-- The friend's landing page for Lockspot's invite (the app's share text links here). It holds the Apple offer code,
+     so the code can change without an app update. Kept out of sitemap.xml and noindex: it is for people with the link.
+     data-offer, not data-launched, decides the free-month copy: "soon" (the default) never mentions it, "paused" says
+     it's paused, "live" shows the Claim button. Set "live" only once LOCKINWITHME redeems; pause with "paused", never by setting
+     data-launched back (app repo: docs/INVITE-GIFT.md). -->
+<html lang="en" data-launched="false" data-offer="soon">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'sha256-ZUo6wteaZqxpJ8lBJaoRjNUyDEKgneGyOmZe+OSqmak='; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<title>Lock in with a friend · Lockspot</title>
+<meta name="description" content="A friend wants to lock in with you on Lockspot. It blocks the apps that get you when you're at a spot you pick, like your desk, the gym or the library.">
+<link rel="canonical" href="https://getlockspot.com/invite/">
+<meta name="theme-color" content="#0E0E10">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lockspot">
+<meta property="og:title" content="Your friend wants to lock in with you">
+<meta property="og:description" content="Lockspot blocks the apps that get you at the spots you pick: your desk, the gym, the library. First one to cave buys the coffee.">
+<meta property="og:url" content="https://getlockspot.com/invite/">
+<meta property="og:image" content="https://getlockspot.com/assets/img/og.png">
+<meta property="og:image:alt" content="The Lockspot padlock mascot next to the words Draw a zone. Lock in.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preload" href="../assets/fonts/PlusJakartaSans-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/PlusJakartaSans-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/site.css">
+<!-- Page-local: the offer switch. Live-only blocks also carry hidden, so if this style is ever blocked (its hash in the
+     CSP above must match it exactly; site README) the page falls back to the "isn't open" copy. -->
+<style>[data-offer='live'] .if-offer[hidden] { display: block !important; } [data-offer='live'] .if-no-offer { display: none !important; } [data-offer='paused'] .if-paused[hidden] { display: block !important; }</style>
+<script src="../assets/js-flag.js"></script>
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<!-- shared:header -->
+<a class="skip" href="#main">Skip to content</a>
+<div class="sentinel" aria-hidden="true"></div>
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="wordmark" href="../" aria-label="Lockspot home"><span class="wordmark__tile" aria-hidden="true"></span><span aria-hidden="true">lockspot</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <a class="nav-how" href="../#how">How it works</a>
+      <a class="hide-sm" href="../privacy/">Privacy</a>
+      <a class="hide-sm" href="../support/">Support</a>
+      <a class="btn btn--primary btn--sm header-get if-launched" href="https://apps.apple.com/app/id6824683190" aria-label="Get Lockspot on the App Store"><span class="hide-sm">Get Lockspot</span><span class="show-sm">Get</span></a>
+    </nav>
+  </div>
+</header>
+<!-- /shared:header -->
+<main id="main" class="page">
+  <div class="wrap">
+    <div class="prose">
+      <h1 class="if-offer" hidden>Your friend sent you a free month.</h1>
+      <h1 class="if-no-offer">Your friend wants to lock in with you.</h1>
+      <p class="intro">Lockspot blocks the apps that eat your time when you get to a spot you draw on the map, like your desk, the gym or the library. You lock in on your iPhone, your friend locks in on theirs. First one to cave buys the coffee.</p>
+
+      <p class="meta if-no-offer if-prelaunch">Lockspot is coming to the App Store soon. Keep this link and check back.</p>
+      <p class="meta if-paused" hidden>The free month is paused right now. Keep this link and check back soon.</p>
+      <p class="meta if-no-offer if-launched">Lockspot is on the App Store: <a href="https://apps.apple.com/app/id6824683190">get Lockspot</a>.</p>
+
+      <p class="if-offer" hidden><a class="btn btn--primary" href="https://apps.apple.com/redeem?ctx=offercodes&amp;id=6824683190&amp;code=LOCKINWITHME">Claim my free month</a></p>
+      <p class="meta if-offer" hidden>For people new to Lockspot. It's a real Lockspot Pro subscription on the yearly plan, so Apple asks you to confirm with your Apple Account. After the free month, it renews at the yearly price shown on Apple's sheet, billed to your Apple Account, unless you cancel at least 24 hours before the free month ends (Settings &gt; your name &gt; Subscriptions).</p>
+
+      <section class="card if-offer" hidden aria-labelledby="how-to-claim">
+        <h2 id="how-to-claim">How to claim it</h2>
+        <ol>
+          <li>Open this page on your iPhone and tap <strong>Claim my free month</strong>. If Lockspot isn't on your iPhone yet, the App Store asks you to download it first.</li>
+          <li>Apple shows the offer and the yearly price it renews at. Confirm with your Apple Account to start your free month.</li>
+          <li>Open Lockspot and sign in. If it still asks you to subscribe, tap <strong>Restore</strong> at the top left.</li>
+        </ol>
+        <p>Already on Lockspot's membership screen? Tap <strong>Redeem code</strong> under the plans and type <strong>LOCKINWITHME</strong>.</p>
+      </section>
+
+      <p class="meta if-offer" hidden>Had Lockspot before, or Apple says the offer isn't for you? You can still <a href="https://apps.apple.com/app/id6824683190">get Lockspot on the App Store</a>.</p>
+
+      <p class="meta">More about Lockspot: <a href="../">How it works</a> · <a href="../privacy/">Privacy policy</a> · <a href="../terms/">Terms of use</a> · <a href="../support/">Support</a></p>
+    </div>
+  </div>
+</main>
+<!-- shared:footer -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div>
+        <a class="wordmark" href="../" aria-label="Lockspot home"><span class="wordmark__tile" aria-hidden="true"></span><span aria-hidden="true">lockspot</span></a>
+        <p class="tag">Draw a zone. Lock in.</p>
+        <p>Lockspot is made by Benjamin Hirsch.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul class="foot-links">
+          <li><a href="../">Home</a></li>
+          <li><a href="../privacy/">Privacy</a></li>
+          <li><a href="../terms/">Terms</a></li>
+          <li><a href="../support/">Support</a></li>
+          <li><a href="../accessibility/">Accessibility</a></li>
+          <li><a href="../licenses/">Licenses</a></li>
+        </ul>
+      </nav>
+      <div>
+        <p>This site sets no cookies and runs no analytics.</p>
+        <p class="if-prelaunch">Apple and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries and regions. App Store is a service mark of Apple Inc.</p>
+        <p class="if-launched">Apple, the Apple logo and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries and regions. App Store is a service mark of Apple Inc.</p>
+        <p>Lockspot is not affiliated with or endorsed by Apple Inc.</p>
+      </div>
+    </div>
+    <p class="copy">&copy; 2026 Benjamin Hirsch</p>
+  </div>
+</footer>
+<!-- /shared:footer -->
+</body>
+</html>
