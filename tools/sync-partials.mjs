@@ -18,7 +18,7 @@ const PAGES = [
   { file: 'support/index.html', key: 'support', root: '../', home: '../' },
   { file: 'accessibility/index.html', key: 'accessibility', root: '../', home: '../' },
   { file: 'licenses/index.html', key: 'licenses', root: '../', home: '../' },
-  { file: '404.html', key: '404', root: '/lockspot-site/', home: '/lockspot-site/' },
+  { file: '404.html', key: '404', root: '/', home: '/' },
 ];
 
 const wordmark = (home) =>
