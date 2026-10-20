@@ -88,7 +88,7 @@
       <p>You create a Lockspot account during setup. There are two ways to sign in, and neither uses a password.</p>
       <ul>
         <li><strong>Sign in with Apple.</strong> Lockspot asks Apple for no name and no email, so Apple shares only an ID that is the same across apps from Lockspot's developer and different for every other developer.</li>
-        <li><strong>Email and a 6-digit code.</strong> You type your email address, and Supabase, the sign-in service Lockspot uses, emails you a 6-digit code to type into the app. Your email address is stored with your account so you can sign in again. Lockspot uses it only to sign you in, and doesn't send you marketing.</li>
+        <li><strong>Email and a 6-digit code.</strong> You type your email address, and Supabase, the sign-in service Lockspot uses, sends you a 6-digit code to type into the app. The email goes out through Resend, an email delivery service. Your email address is stored with your account so you can sign in again. Lockspot uses it only to sign you in, and doesn't send you marketing.</li>
       </ul>
       <p>Supabase stores the ID from Sign in with Apple, or your email address, with a Lockspot account ID, when the account was created and when you last signed in, and keeps standard security logs of sign-in requests.</p>
 
@@ -96,9 +96,10 @@
       <p>You buy Lockspot Pro through Apple's App Store, and Apple never gives Lockspot your payment details. RevenueCat, the service Lockspot uses to check memberships, receives your Lockspot account ID and the purchase history Apple shares for Lockspot: which plan you have, when it started, renews or ended, whether it began with a free trial, any refund, and the App Store country and price. Lockspot uses this to unlock the app, to restore your membership on another iPhone, and to see overall totals, such as how many people subscribed this month. It never sees your zones, apps or location.</p>
 
       <h2 id="providers">The services that handle it</h2>
-      <p>Supabase and RevenueCat handle your account and purchase data on Lockspot's behalf, as service providers (processors), and only to run Lockspot. Neither kind of data is used for advertising or to track you across other companies' apps or websites, and neither is sold.</p>
+      <p>Supabase, Resend and RevenueCat handle your account and purchase data on Lockspot's behalf, as service providers (processors), and only to run Lockspot. Neither kind of data is used for advertising or to track you across other companies' apps or websites, and neither is sold.</p>
       <ul>
         <li><strong>Supabase</strong> runs sign-in and stores accounts. See <a href="https://supabase.com/privacy">Supabase's privacy policy</a>.</li>
+        <li><strong>Resend</strong> delivers the sign-in code emails, so it receives your email address and the email with your code. It isn't used if you sign in with Apple. See <a href="https://resend.com/legal/privacy-policy">Resend's privacy policy</a>.</li>
         <li><strong>RevenueCat</strong> checks App Store purchases and keeps your purchase history. See <a href="https://www.revenuecat.com/privacy/">RevenueCat's privacy policy</a>.</li>
       </ul>
       <p>Like any online service, they also receive the details every internet connection carries, such as your IP address and your app and iOS version. Lockspot doesn't use these to locate you.</p>
@@ -107,6 +108,7 @@
       <ul>
         <li>Your account and your purchase history are kept while you have an account. Deleting your account deletes them from Supabase and RevenueCat (see <a href="#controls">Your controls</a>).</li>
         <li>Supabase's security logs of sign-in requests expire on Supabase's own schedule.</li>
+        <li>Resend keeps a delivery record of each code email (the address, the time and whether it arrived) for a limited time on its own schedule.</li>
         <li>What the app stores on your iPhone stays there until you delete it or delete the app.</li>
         <li>Apple keeps its own record of your purchases under Apple's privacy policy.</li>
       </ul>
@@ -136,7 +138,7 @@
       <h2 id="website">This website</h2>
       <p>This site is hosted on GitHub Pages. Like any web host, GitHub receives your IP address and standard request details, such as your browser and the page you asked for, and logs them for security. We can't see or control those logs; <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's Privacy Statement</a> covers them.</p>
       <p>The site sets no cookies and uses no local storage, analytics, tracking pixels or third-party embeds. Its fonts are hosted on the site itself, so loading a page doesn't contact Google or anyone else.</p>
-      <p>App Store links open Apple's site or app, where Apple's privacy policy applies. GitHub links go to GitHub, and the links to Supabase's and RevenueCat's privacy policies go to their sites. We don't add tracking parameters to any of them.</p>
+      <p>App Store links open Apple's site or app, where Apple's privacy policy applies. GitHub links go to GitHub, and the links to Supabase's, Resend's and RevenueCat's privacy policies go to their sites. We don't add tracking parameters to any of them.</p>
 
       <h2 id="dnt">Do Not Track</h2>
       <p>Neither the app nor this site tracks you, so Do Not Track and Global Privacy Control signals don't change anything.</p>
@@ -154,9 +156,9 @@
 
       <h2 id="rights">Who's responsible and your rights</h2>
       <p>Benjamin Hirsch, an individual developer in Highland, Utah, USA, makes Lockspot and runs this website, and is responsible for both.</p>
-      <p>Supabase and RevenueCat process account and membership data for us. GitHub runs its server logs as its own controller, under GitHub's Privacy Statement and its own retention rules. We never receive them.</p>
+      <p>Supabase, Resend and RevenueCat process account and membership data for us. GitHub runs its server logs as its own controller, under GitHub's Privacy Statement and its own retention rules. We never receive them.</p>
       <p>The personal data we handle is your Lockspot account and membership data, and anything you post on our GitHub repository. We use account and membership data to provide the membership you signed up for (GDPR Article 6(1)(b), performance of a contract). For support questions, the legal basis is our legitimate interest in answering them and helping the people who use Lockspot (GDPR Article 6(1)(f)). Questions stay on GitHub until they're deleted.</p>
-      <p>You have the right to ask for access to personal data we hold about you, and to have it corrected (rectification) or deleted (erasure). You can ask us to restrict how it's used, object to how it's used, and give it to you in a portable format. You can delete your account and its data yourself in the app at any time. You can also complain to your local data protection authority. Supabase, RevenueCat and GitHub may store and process data in the United States, under the safeguards described in their own privacy policies and data protection terms.</p>
+      <p>You have the right to ask for access to personal data we hold about you, and to have it corrected (rectification) or deleted (erasure). You can ask us to restrict how it's used, object to how it's used, and give it to you in a portable format. You can delete your account and its data yourself in the app at any time. You can also complain to your local data protection authority. Supabase, Resend, RevenueCat and GitHub may store and process data in the United States, under the safeguards described in their own privacy policies and data protection terms.</p>
       <p>A private email address for privacy requests will be added to this page. Until then, open a question on GitHub, leave out personal details, and say you'd like to make a privacy request.</p>
 
       <h2 id="children">Children</h2>
