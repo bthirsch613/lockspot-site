@@ -1,48 +1,603 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-launched="false">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lockspot: draw a zone, lock in</title>
-<meta name="description" content="Lockspot blocks the apps you pick while you're inside a place you drew on the map. No account, nothing leaves your phone, blocking is free.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;800&display=swap">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Lockspot: block distracting apps where you study</title>
+<meta name="description" content="Lockspot for iPhone blocks the apps you pick while you're inside a spot you drew on the map. Your zones and location stay on your phone. Requires a Lockspot Pro membership.">
+<link rel="canonical" href="https://bthirsch613.github.io/lockspot-site/">
+<meta name="theme-color" content="#0E0E10">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lockspot">
+<meta property="og:title" content="Lockspot: draw a zone, lock in">
+<meta property="og:description" content="Lockspot for iPhone blocks the apps you pick while you're inside a spot you drew on the map. Your zones and location stay on your phone. Requires a Lockspot Pro membership.">
+<meta property="og:url" content="https://bthirsch613.github.io/lockspot-site/">
+<meta property="og:image" content="https://bthirsch613.github.io/lockspot-site/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Lockspot padlock mascot next to the words Draw a zone. Lock in., with Lockspot's map screen showing a purple zone around the library.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/PlusJakartaSans-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/PlusJakartaSans-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/home.css">
+<script src="assets/js-flag.js"></script>
+<script src="assets/site.js" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Lockspot","alternateName":"Lockspot: Lock In Zones","description":"Lockspot for iPhone blocks the apps you pick while you're inside a spot you drew on the map. Your zones and location stay on your phone. Requires a Lockspot Pro membership.","operatingSystem":"iOS","applicationCategory":"UtilitiesApplication","url":"https://bthirsch613.github.io/lockspot-site/","image":"https://bthirsch613.github.io/lockspot-site/assets/img/og.png","author":{"@type":"Person","name":"Benjamin Hirsch"},"featureList":["Zones drawn to your shape","Hold to lock in","Streak with a weekly freeze","If-then plan per zone","Weekly recap","Meme drops"]}
+</script>
 </head>
 <body>
-<main>
-<header class="site">
-  <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"></span>Lockspot</a>
-  <nav class="site" aria-label="Site">
-    <a href="support/">Support</a>
-    <a href="privacy/">Privacy</a>
-  </nav>
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-lock" viewBox="0 0 24 24"><path d="M7 11h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-unlock" viewBox="0 0 24 24"><path d="M7 11h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z M8 11V7.5a4 4 0 0 1 7.7-1.5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z M14.2 10a2.2 2.2 0 1 1-4.4 0a2.2 2.2 0 1 1 4.4 0"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-squad" viewBox="0 0 24 24"><path d="M5.5 8a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0 M2.5 20c1-3.5 3.5-5.5 6.5-5.5s5.5 2 6.5 5.5 M16 4.5a3.5 3.5 0 0 1 0 7 M18 14.8c1.8.7 3 2.4 3.5 5.2"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path d="M8 8a4 4 0 1 0 8 0a4 4 0 1 0-8 0 M4.5 20c1.2-3.6 4-5.5 7.5-5.5s6.3 1.9 7.5 5.5"/></symbol>
+  <symbol id="i-recap" viewBox="0 0 24 24"><path d="M6.5 7h8A2.5 2.5 0 0 1 17 9.5v9a2.5 2.5 0 0 1-2.5 2.5h-8A2.5 2.5 0 0 1 4 18.5v-9A2.5 2.5 0 0 1 6.5 7z M8 3h9.5A2.5 2.5 0 0 1 20 5.5V17"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 4v11 M8 8l4-4 4 4 M5 13v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-redo" viewBox="0 0 24 24"><path d="M4 9h11a5 5 0 0 1 0 10H8 M8 5L4 9l4 4"/></symbol>
+  <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16l-1 4z"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0 M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7 M12 17h.01"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8 M14 7a2 2 0 1 0 4 0a2 2 0 1 0-4 0 M8 17a2 2 0 1 0 4 0a2 2 0 1 0-4 0"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-apps" viewBox="0 0 24 24"><path d="M5 4h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z M15 4h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z M5 14h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z M15 14h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z"/></symbol>
+  <symbol id="i-freeze" viewBox="0 0 24 24"><path d="M12 3v18 M4.2 7.5l15.6 9 M4.2 16.5l15.6-9 M9.5 4.5L12 6l2.5-1.5 M9.5 19.5L12 18l2.5 1.5"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 6v12 M15 6v12"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5z"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.4-5.7 M20 4v5h-5"/></symbol>
+  <symbol id="i-shape" viewBox="0 0 24 24"><path d="M5 6l9-2 5 6-3 9-10-2z"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><path d="M8 3h8a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z M10.5 9.5v5l4-2.5z"/></symbol>
+  <symbol id="i-feed" viewBox="0 0 24 24"><path d="M7 15.5a3.5 3.5 0 1 1 0-7c3 0 7 7 10 7a3.5 3.5 0 1 0 0-7c-3 0-7 7-10 7z"/></symbol>
+  <symbol id="i-game" viewBox="0 0 24 24"><path d="M7 8h10a4 4 0 0 1 4 4v1a3 3 0 0 1-5.4 1.8l-1.1-1.3h-5l-1.1 1.3A3 3 0 0 1 3 13v-1a4 4 0 0 1 4-4z M7.5 10.5v3 M6 12h3 M16 11.5h.01 M17.5 13h.01"/></symbol>
+  <symbol id="sb-icons" viewBox="0 0 76 13"><g fill="#fff"><rect x="0" y="8" width="3.2" height="4.5" rx="1"/><rect x="4.8" y="5.8" width="3.2" height="6.7" rx="1"/><rect x="9.6" y="3.4" width="3.2" height="9.1" rx="1"/><rect x="14.4" y="1" width="3.2" height="11.5" rx="1"/><circle cx="31.3" cy="10.6" r="1.6"/><rect x="46.5" y="3" width="17.5" height="7.5" rx="2"/><path d="M71 4.6v4.3a2.2 2.2 0 0 0 0-4.3z" fill-opacity=".45"/></g><path d="M24.5 4.6a10 10 0 0 1 13.6 0 M27 7.2a6.3 6.3 0 0 1 8.6 0" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round"/><rect x="44.5" y="1" width="25" height="11.5" rx="3.6" fill="none" stroke="#fff" stroke-opacity=".4"/></symbol>
+  <defs>
+    <g id="m-base"><path d="M40 54V42a20 20 0 0 1 40 0V54" fill="none" stroke="#fff" stroke-width="8"/><rect x="24" y="50" width="72" height="58" rx="20" fill="#fff"/></g>
+    <g id="e-focus" fill="#000"><rect x="40" y="72" width="12" height="4" rx="2"/><rect x="68" y="72" width="12" height="4" rx="2"/></g>
+    <g id="e-wide" fill="#000"><rect x="40.5" y="66.5" width="11" height="11" rx="5.5"/><rect x="68.5" y="66.5" width="11" height="11" rx="5.5"/></g>
+    <g id="e-side" fill="#000"><rect x="47" y="70" width="8" height="8" rx="4"/><rect x="75" y="70" width="8" height="8" rx="4"/></g>
+    <g id="e-tired" fill="#000"><rect x="40" y="75.5" width="12" height="3" rx="1.5"/><rect x="68" y="75.5" width="12" height="3" rx="1.5"/></g>
+    <path id="mo-flat" d="M53 92H67" fill="none" stroke="#000" stroke-width="3.5" stroke-linecap="round"/>
+    <path id="mo-smile" d="M52 89Q60 97 68 89" fill="none" stroke="#000" stroke-width="3.5" stroke-linecap="round"/>
+    <pattern id="dots10" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="#2C2C32"/></pattern>
+    <g id="street-plan">
+      <rect width="520" height="340" fill="#141417"/>
+      <path d="M0 96H520M104 0V340M0 330H520" stroke="#202026" stroke-width="8" fill="none"/>
+      <g fill="#1A1A1F"><rect x="20" y="20" width="72" height="66" rx="5"/><rect x="120" y="20" width="90" height="66" rx="5"/><rect x="222" y="20" width="80" height="66" rx="5"/><rect x="316" y="20" width="88" height="66" rx="5"/><rect x="440" y="20" width="62" height="66" rx="5"/><rect x="20" y="111" width="72" height="90" rx="5"/><rect x="440" y="111" width="62" height="90" rx="5"/><rect x="20" y="247" width="72" height="74" rx="5"/><rect x="120" y="247" width="48" height="74" rx="5"/><rect x="180" y="247" width="66" height="74" rx="5"/><rect x="326" y="247" width="78" height="74" rx="5"/><rect x="440" y="247" width="62" height="74" rx="5"/></g>
+      <rect x="306" y="111" width="98" height="88" rx="6" fill="#1E1E24"/>
+      <path d="M120 111H290V155H226V193H120Z" fill="#23232A"/>
+      <rect x="258" y="247" width="56" height="44" rx="6" fill="#26262E"/>
+      <path transform="translate(72 0)" d="M206 259h13v6a5.5 5.5 0 0 1-5.5 5.5h-2a5.5 5.5 0 0 1-5.5-5.5z M219 261h2.2a2.3 2.3 0 0 1 0 4.6H219" fill="none" stroke="#A1A1AA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M0 225H520M420 0V340" stroke="#2A2A30" stroke-width="20" fill="none"/>
+      <path d="M0 225H520M420 0V340" stroke="#3A3A42" stroke-dasharray="8 10" fill="none"/>
+      <g class="mlabel"><text x="24" y="228.5">COLLEGE AVE</text><text x="423" y="118" transform="rotate(90 423 118)">ELM ST</text><text x="132" y="127">LIBRARY</text><text x="271" y="285">CAFÉ</text><text x="318" y="127">DORM</text></g>
+    </g>
+  </defs>
+</svg>
+<!-- shared:header -->
+<a class="skip" href="#main">Skip to content</a>
+<div class="sentinel" aria-hidden="true"></div>
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="wordmark" href="./" aria-label="Lockspot home"><span class="wordmark__tile" aria-hidden="true"></span><span aria-hidden="true">lockspot</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <a class="nav-how" href="#how">How it works</a>
+      <a class="hide-sm" href="privacy/">Privacy</a>
+      <a class="hide-sm" href="support/">Support</a>
+      <a class="btn btn--primary btn--sm header-get if-launched" href="https://apps.apple.com/app/id6824683190" aria-label="Get Lockspot on the App Store"><span class="hide-sm">Get Lockspot</span><span class="show-sm">Get</span></a>
+    </nav>
+  </div>
 </header>
+<!-- /shared:header -->
+<main id="main">
 
-<h1>Draw a zone.<br>Lock in.</h1>
-<p class="lede">Trace the exact shape of the place where you get work done. Walk in and the apps you picked lock themselves. Walk out and they're back.</p>
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__dots" aria-hidden="true"></div>
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <p class="label hero__in">Lockspot for iPhone</p>
+      <h1 class="h1 hero__in" id="hero-title">Draw a zone.<br><span class="hl">Lock in.</span></h1>
+      <p class="lede hero__sub hero__in">Trace the outline of the library, your dorm or the science building. Walk in and the apps that get you lock themselves. Walk out and they're back.</p>
+      <div class="hero__cta" data-hero-cta>
+        <p class="cta-soon if-prelaunch"><svg class="ic ic--b" aria-hidden="true"><use href="#i-lock"/></svg>Coming soon on the App Store</p>
+        <a class="cta-soon if-prelaunch" href="https://apps.apple.com/app/id6824683190"><svg class="ic ic--b" aria-hidden="true"><use href="#i-lock"/></svg>Coming soon on the App Store</a>
+        <a class="appstore-badge if-launched" href="https://apps.apple.com/app/id6824683190"><span class="sr-only">Download on the App Store</span></a>
+        <a class="text-link" href="#how">See how it works</a>
+      </div>
+      <p class="hero__micro">Lockspot Pro membership · No ads · Your location stays on your phone</p>
+    </div>
 
-<div class="card">
-  <h2>How it works</h2>
-  <ul>
-    <li><strong>Draw the real shape</strong> of your library, desk or classroom with one finger. Lockspot uses your shape, not a big circle.</li>
-    <li><strong>Pick the apps</strong> that eat your afternoons with Apple's Screen Time picker.</li>
-    <li><strong>Hold to lock in</strong> anywhere, no location needed.</li>
-    <li><strong>A streak that forgives:</strong> one freeze a week, because life happens.</li>
-  </ul>
-</div>
+    <div class="hero__stage" data-hero>
+      <figure class="phone phone--lg" role="img" aria-label="Lockspot's map screen: a zone traced around the library turns purple when you walk in, and the sheet says your picked apps are blocked here." data-hero-phone>
+        <div class="phone__frame"><div class="phone__screen">
+          <div class="app" aria-hidden="true">
+            <svg class="a-map" viewBox="0 0 390 501" width="390" height="501">
+              <rect width="390" height="501" fill="#141417"/>
+              <path d="M0 44H390" stroke="#202026" stroke-width="7"/>
+              <path d="M24 0V501M370 0V501" stroke="#202026" stroke-width="8"/>
+              <path d="M0 446H390" stroke="#202026" stroke-width="10"/>
+              <path d="M120 0V150M300 0V150M0 312H40M222 290H390M110 446V501" stroke="#202026" stroke-width="6"/>
+              <g fill="#1A1A1F"><rect x="36" y="56" width="76" height="80" rx="5"/><rect x="130" y="56" width="82" height="38" rx="5"/><rect x="236" y="56" width="56" height="82" rx="5"/><rect x="310" y="56" width="52" height="38" rx="5"/><rect x="236" y="162" width="18" height="118" rx="5"/><rect x="334" y="162" width="26" height="118" rx="5"/><rect x="236" y="410" width="120" height="26" rx="5"/></g>
+              <g fill="#1C1C21"><rect x="130" y="102" width="82" height="36" rx="5"/><rect x="310" y="102" width="52" height="36" rx="5"/><rect x="160" y="252" width="46" height="50" rx="5"/></g>
+              <g fill="#1E1E24"><rect x="58" y="186" width="136" height="50" rx="6"/><rect x="58" y="236" width="88" height="60" rx="6"/><rect x="270" y="212" width="50" height="38" rx="5"/><rect x="254" y="330" width="88" height="64" rx="5"/></g>
+              <rect x="40" y="326" width="164" height="104" rx="12" fill="#161819"/><rect x="40" y="326" width="164" height="104" rx="12" fill="url(#dots10)"/>
+              <path d="M52 340C96 362 142 344 194 418" stroke="#26262C" stroke-width="3" stroke-dasharray="2 5" fill="none"/>
+              <path d="M0 150H390" stroke="#2A2A30" stroke-width="18"/><path d="M222 0V501" stroke="#2A2A30" stroke-width="16"/>
+              <path d="M0 150H390M222 0V501" stroke="#3A3A42" stroke-dasharray="8 10" fill="none"/>
+              <g class="mlabel"><text x="244" y="153">COLLEGE AVE</text><text x="230" y="312" transform="rotate(90 230 312)">ELM ST</text><text x="72" y="384">MAIN QUAD</text></g>
+              <path d="M262 206L322 202L328 252L268 256Z" fill="#fff" fill-opacity=".1" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M246 322L344 316L350 396L252 402Z" fill="#fff" fill-opacity=".1" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/>
+              <circle class="h-ring" cx="125" cy="238" r="124" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="1.5" stroke-dasharray="3 7"/>
+              <path class="h-lib h-lib--idle" d="M52 178L196 172L202 240L150 244L152 304L48 300Z" fill="#fff" fill-opacity=".1" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/>
+              <path class="h-lib h-lib--on" d="M52 178L196 172L202 240L150 244L152 304L48 300Z" fill="#6C63E6" fill-opacity=".3" stroke="#6C63E6" stroke-width="3" stroke-linejoin="round"/>
+              <path class="h-trace" d="M52 178L196 172L202 240L150 244L152 304L48 300Z" pathLength="100" fill="none" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+            </svg>
+            <div class="zchip zchip--desk"><span class="zchip__in"><svg class="ic ic--c"><use href="#i-pin"/></svg>Dorm</span></div>
+            <div class="zchip zchip--lec"><span class="zchip__in"><svg class="ic ic--c"><use href="#i-pin"/></svg>Lecture Hall B</span></div>
+            <div class="zchip zchip--lib"><span class="zchip__in"><span class="zchip__on"></span><span class="zchip__icons"><svg class="ic ic--c zc-pin"><use href="#i-pin"/></svg><svg class="ic ic--c zc-lock"><use href="#i-lock"/></svg></span><span class="zchip__t">Library</span></span></div>
+            <div class="you"><span>you</span></div>
+            <div class="finger"></div>
+            <div class="a-top">
+              <span class="a-round"><svg class="ic"><use href="#i-settings"/></svg></span>
+              <div class="a-top__mid">
+                <span class="a-word"><span class="a-word__tile"></span>lockspot</span>
+                <span class="a-count"><span class="a-count__a">2 zones armed</span><span class="a-count__b">3 zones armed</span></span>
+              </div>
+              <span class="a-round a-round--accent"><svg class="ic ic--b"><use href="#i-plus"/></svg></span>
+            </div>
+            <div class="a-sheet a-sheet--map">
+              <div class="a-handle"></div>
+              <div class="a-state a-state--a">
+                <p class="a-h2">Free-range rn</p>
+                <p class="a-sub">Walk into a zone and your apps lock themselves.</p>
+                <p class="a-label">Your zones</p>
+                <div class="a-rows">
+                  <div class="a-zrow"><span class="a-zrow__ic"><svg class="ic ic--b"><use href="#i-pin"/></svg></span><span class="a-zrow__t"><b>Lecture Hall B</b><i>2h 05m here this week</i></span><em>Edit</em></div>
+                  <div class="a-zrow"><span class="a-zrow__ic"><svg class="ic ic--b"><use href="#i-pin"/></svg></span><span class="a-zrow__t"><b>Dorm</b><i>3h 05m here this week</i></span><em>Edit</em></div>
+                </div>
+              </div>
+              <div class="a-state a-state--b">
+                <p class="a-h2">You're in Library</p>
+                <p class="a-sub">Your picked apps are blocked here.</p>
+                <p class="a-plan">When I'm here, I start with the problem set</p>
+                <p class="a-label">Your zones</p>
+                <div class="a-rows">
+                  <div class="a-zrow a-zrow--on"><span class="a-zrow__ic"><svg class="ic ic--b"><use href="#i-lock"/></svg></span><span class="a-zrow__t"><b>Library</b><i>Blocking now · 4 apps + 1 category</i></span><em>Edit</em></div>
+                  <div class="a-zrow"><span class="a-zrow__ic"><svg class="ic ic--b"><use href="#i-pin"/></svg></span><span class="a-zrow__t"><b>Lecture Hall B</b><i>2h 05m here this week</i></span><em>Edit</em></div>
+                </div>
+              </div>
+            </div>
+            <div class="a-nav">
+              <span class="a-dots"><i></i><i class="on"></i><i></i></span>
+              <span class="a-nav__row"><span class="a-navbtn"><svg class="ic"><use href="#i-squad"/></svg></span><span class="a-shutter"><svg class="a-shutter__ring" viewBox="0 0 88 88"><circle cx="44" cy="44" r="40"/></svg><span class="a-shutter__disc"><svg class="ic ic--b"><use href="#i-lock"/></svg></span></span><span class="a-navbtn"><svg class="ic"><use href="#i-recap"/></svg></span></span>
+              <span class="a-nav__label">Hold to lock in</span>
+            </div>
+            <div class="a-sb"><span>9:41</span><svg><use href="#sb-icons"/></svg></div>
+          </div>
+        </div></div>
+      </figure>
+      <div class="peek" aria-hidden="true">
+        <svg class="mascot" viewBox="0 0 120 120"><path class="m-shackle" d="M40 54V42a20 20 0 0 1 40 0V54"/><g class="m-body"><rect x="24" y="50" width="72" height="58" rx="20"/><g class="m-eyes m-eyes--side"><use href="#e-side"/></g><g class="m-eyes m-eyes--focus"><use href="#e-focus"/></g><use href="#mo-smile"/></g></svg>
+      </div>
+      <ul class="tiles" aria-hidden="true">
+        <li class="tile"><svg class="ic"><use href="#i-video"/></svg><span>Short videos</span><span class="tile__badge"><svg class="ic ic--b"><use href="#i-lock"/></svg></span></li>
+        <li class="tile"><svg class="ic"><use href="#i-feed"/></svg><span>Endless feed</span><span class="tile__badge"><svg class="ic ic--b"><use href="#i-lock"/></svg></span></li>
+        <li class="tile"><svg class="ic"><use href="#i-game"/></svg><span>Games</span><span class="tile__badge"><svg class="ic ic--b"><use href="#i-lock"/></svg></span></li>
+      </ul>
+      <span class="h-clock" aria-hidden="true"></span>
+      <button class="icon-btn replay" type="button" aria-label="Replay the demo" hidden data-replay><svg class="ic" aria-hidden="true"><use href="#i-redo"/></svg></button>
+    </div>
+  </div>
+</section>
 
-<div class="card">
-  <h2>Private by design</h2>
-  <p>No account, no ads, no tracking. Your zones, your app picks and your Screen Time choices stay on your iPhone. Blocking is free.</p>
-  <a class="button" href="privacy/">Read the privacy policy</a>
-</div>
+<section class="sec how" id="how" aria-labelledby="how-title">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="label">How it works</p>
+      <h2 class="h2" id="how-title">Set it up once. Then just show up.</h2>
+    </div>
+    <div class="how__steps" data-route>
+      <div class="how__route" aria-hidden="true"><span class="how__route-fill"></span></div>
+      <ol class="how__list" role="list">
+        <li class="step reveal">
+          <svg class="step__pin" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 39s-14-11.7-14-23.5a14 14 0 0 1 28 0C34 27.3 20 39 20 39z" fill="#6C63E6"/><text x="20" y="21.5" text-anchor="middle">1</text></svg>
+          <figure class="crop" role="img" aria-label="The Draw screen, titled Trace your spot, your shape, not a circle, with a purple outline traced around an L-shaped building and a dotted wake-up ring around it.">
+            <svg viewBox="0 0 390 292" aria-hidden="true">
+              <rect width="390" height="292" fill="#141417"/>
+              <path d="M38 0V292" stroke="#202026" stroke-width="12"/><path d="M0 20H300" stroke="#202026" stroke-width="9"/>
+              <g fill="#1A1A1F"><rect x="52" y="34" width="92" height="52" rx="5"/><rect x="52" y="100" width="30" height="192" rx="5"/><rect x="96" y="120" width="44" height="60" rx="5"/><rect x="240" y="260" width="40" height="70" rx="5"/></g>
+              <g fill="#1C1C21"><rect x="158" y="34" width="120" height="52" rx="5"/><rect x="96" y="196" width="44" height="88" rx="5"/><rect x="250" y="110" width="30" height="42" rx="5"/></g>
+              <path d="M154 174H234V206H214V252H154Z" fill="#1F1F25"/><rect x="220" y="210" width="26" height="36" rx="4" fill="#22222A"/>
+              <path d="M300 0V292" stroke="#2A2A30" stroke-width="22"/><path d="M0 100H300" stroke="#2A2A30" stroke-width="20"/>
+              <path d="M300 0V292M0 100H300" stroke="#3A3A42" stroke-dasharray="8 10" fill="none"/>
+              <g class="mlabel"><text x="312" y="210" transform="rotate(90 312 210)">COLLEGE AVE</text><text x="176" y="95">ELM ST</text></g>
+              <path d="M322 128L392 124L392 196L326 200Z" fill="#fff" fill-opacity=".06" stroke="#fff" stroke-opacity=".55" stroke-width="1.5"/>
+              <circle cx="193" cy="213.5" r="98" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="1.5" stroke-dasharray="3 7"/>
+              <path d="M148 170L181 169L208 170L236 174L238 203L218 206L216 228L218 255L190 258L162 257L147 246L144 208Z" fill="#6C63E6" fill-opacity=".3" stroke="#6C63E6" stroke-width="3" stroke-linejoin="round"/>
+              <g fill="#fff" stroke="#6C63E6" stroke-width="2"><circle cx="148" cy="170" r="4"/><circle cx="181" cy="169" r="4"/><circle cx="208" cy="170" r="4"/><circle cx="236" cy="174" r="4"/><circle cx="238" cy="203" r="4"/><circle cx="218" cy="206" r="4"/><circle cx="216" cy="228" r="4"/><circle cx="218" cy="255" r="4"/><circle cx="190" cy="258" r="4"/><circle cx="162" cy="257" r="4"/><circle cx="147" cy="246" r="4"/><circle cx="144" cy="208" r="4"/></g>
+              <rect x="151" y="104.5" width="84" height="22" rx="11" fill="#1C1C1F" stroke="#3A3A40"/><text class="st st--chip" x="193" y="119.5" text-anchor="middle">wake-up ring</text>
+              <circle cx="38" cy="34" r="22" fill="#1C1C1F" stroke="#2E2E33"/><use class="su" href="#i-close" x="28" y="24" width="20" height="20"/>
+              <circle cx="352" cy="34" r="22" fill="#1C1C1F" stroke="#2E2E33"/><use class="su" href="#i-redo" x="342" y="24" width="20" height="20"/>
+              <text class="st st--title" x="195" y="32" text-anchor="middle">Trace your spot</text>
+              <text class="st st--sub" x="195" y="52" text-anchor="middle">Your shape, not a circle</text>
+            </svg>
+          </figure>
+          <h3 class="h3">Draw your spot.</h3>
+          <p>Trace the library, your dorm or a whole building with one finger, then give it a name. Lockspot keeps your outline, not a circle.</p>
+        </li>
+        <li class="step reveal d1">
+          <svg class="step__pin" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 39s-14-11.7-14-23.5a14 14 0 0 1 28 0C34 27.3 20 39 20 39z" fill="#6C63E6"/><text x="20" y="21.5" text-anchor="middle">2</text></svg>
+          <figure class="crop crop--apps" role="img" aria-label="Lockspot's blocked apps row reading Blocked apps: 4 apps + 1 category, with the toast Locked and loaded.">
+            <svg viewBox="0 0 390 292" aria-hidden="true">
+              <rect width="390" height="292" fill="#141417"/>
+              <path d="M0 40H390" stroke="#202026" stroke-width="8"/><path d="M120 0V100M300 0V100" stroke="#202026" stroke-width="6"/>
+              <g fill="#1A1A1F"><rect x="30" y="54" width="76" height="60" rx="5"/><rect x="134" y="54" width="82" height="40" rx="5"/><rect x="314" y="54" width="60" height="40" rx="5"/></g>
+              <path d="M222 0V120" stroke="#2A2A30" stroke-width="16"/>
+              <path d="M0 120a28 28 0 0 1 28-28H362a28 28 0 0 1 28 28V292H0Z" fill="#1C1C1F" stroke="#2E2E33"/>
+              <rect x="177" y="102" width="36" height="5" rx="2.5" fill="#3A3A40"/>
+              <rect x="16.5" y="126.5" width="357" height="65" rx="20" fill="#26262A" stroke="#34343B"/>
+              <rect x="31" y="139" width="40" height="40" rx="13" fill="#1C1C1F"/><use class="su su--c" href="#i-pin" x="42" y="150" width="18" height="18"/>
+              <text class="st st--name" x="83" y="155">Dorm</text><text class="st st--rowsub" x="83" y="174">3h 05m here this week</text><text class="st st--edit" x="359" y="163" text-anchor="end">Edit</text>
+              <rect x="16.5" y="200.5" width="357" height="55" rx="20" fill="none" stroke="#34343B"/>
+              <rect x="31" y="212" width="32" height="32" rx="10" fill="#26262A"/><use class="su" href="#i-apps" x="38" y="219" width="18" height="18"/>
+              <text class="st st--apps" x="75" y="233">Blocked apps: 4 apps + 1 category</text><text class="st st--edit" x="359" y="232" text-anchor="end">Edit</text>
+              <text class="st st--note" x="16" y="278">With the app open, zones switch on right away.</text>
+              <g class="toast"><rect x="112" y="22" width="166" height="40" rx="20" fill="#fff"/><text class="st st--toast" x="195" y="46.5" text-anchor="middle">Locked and loaded.</text></g>
+            </svg>
+          </figure>
+          <h3 class="h3">Pick what gets you.</h3>
+          <p>Choose apps, whole categories or websites in Apple's Screen Time list. Your iPhone gives Lockspot anonymous tokens instead of names, so it never learns which apps they are.</p>
+        </li>
+        <li class="step reveal d2">
+          <svg class="step__pin" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 39s-14-11.7-14-23.5a14 14 0 0 1 28 0C34 27.3 20 39 20 39z" fill="#6C63E6"/><text x="20" y="21.5" text-anchor="middle">3</text></svg>
+          <figure class="crop crop--walk" role="img" aria-label="Lockspot's zone row for the Library zone turning purple and reading Blocking now, 4 apps + 1 category, once you are inside the zone.">
+            <svg viewBox="0 0 390 292" aria-hidden="true">
+              <rect width="390" height="292" fill="#141417"/>
+              <path d="M0 30H390" stroke="#2A2A30" stroke-width="18"/><path d="M222 0V200" stroke="#2A2A30" stroke-width="16"/>
+              <path d="M0 30H390M222 0V200" stroke="#3A3A42" stroke-dasharray="8 10" fill="none"/>
+              <g fill="#1E1E24"><rect x="58" y="66" width="136" height="50" rx="6"/><rect x="58" y="116" width="88" height="60" rx="6"/></g>
+              <g fill="#1A1A1F"><rect x="236" y="42" width="18" height="118" rx="5"/><rect x="270" y="92" width="50" height="38" rx="5"/></g>
+              <g class="cw-off"><path d="M52 58L196 52L202 120L150 124L152 184L48 180Z" fill="#fff" fill-opacity=".1" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></g>
+              <g class="cw-on"><path d="M52 58L196 52L202 120L150 124L152 184L48 180Z" fill="#6C63E6" fill-opacity=".3" stroke="#6C63E6" stroke-width="3" stroke-linejoin="round"/></g>
+              <circle cx="104" cy="112" r="26" fill="#fff" fill-opacity=".12"/><circle cx="104" cy="112" r="17.5" fill="#fff" stroke="#6C63E6" stroke-width="3"/><text class="st st--you" x="104" y="116" text-anchor="middle">you</text>
+              <path d="M0 214a28 28 0 0 1 28-28H362a28 28 0 0 1 28 28V292H0Z" fill="#1C1C1F" stroke="#2E2E33"/>
+              <g class="cw-off"><rect x="16.5" y="208.5" width="357" height="65" rx="20" fill="#26262A" stroke="#34343B"/><rect x="31" y="221" width="40" height="40" rx="13" fill="#1C1C1F"/><use class="su su--c" href="#i-pin" x="42" y="232" width="18" height="18"/><text class="st st--name" x="83" y="237">Library</text><text class="st st--rowsub" x="83" y="256">5h 10m here this week</text><text class="st st--edit" x="359" y="245" text-anchor="end">Edit</text></g>
+              <g class="cw-on"><rect x="16.5" y="208.5" width="357" height="65" rx="20" fill="#6C63E6" stroke="#6C63E6"/><rect x="31" y="221" width="40" height="40" rx="13" fill="#fff" fill-opacity=".18"/><use class="su su--c" href="#i-lock" x="42" y="232" width="18" height="18"/><text class="st st--name" x="83" y="237">Library</text><text class="st st--rowsub st--w" x="83" y="256">Blocking now · 4 apps + 1 category</text><text class="st st--edit st--w" x="359" y="245" text-anchor="end">Edit</text></g>
+            </svg>
+          </figure>
+          <h3 class="h3">Walk in. Locked.</h3>
+          <p>Walk into your spot and those apps lock themselves. Walk out and they're back. Nothing to remember to start.</p>
+          <p class="small muted step__fine">With Lockspot open it switches in seconds. Closed, give it a minute or three.</p>
+        </li>
+      </ol>
+    </div>
+    <div class="plan reveal">
+      <div>
+        <h3 class="h3">Give each spot a plan.</h3>
+        <p>Write an if-then line like “When I'm here, I start with the problem set.” Lockspot shows it on the map screen while you're there, and on the lock-in screen when you lock in there.</p>
+      </div>
+      <p class="plan__box" aria-hidden="true">When I'm here, I start with the problem set</p>
+    </div>
+  </div>
+</section>
 
-<p class="meta">Lockspot for iPhone is coming to the App Store as "Lockspot: Lock In Zones".</p>
+<section class="sec shape" id="shape" aria-labelledby="shape-title">
+  <div class="wrap">
+    <div class="sec__head shape__head">
+      <h2 class="h2" id="shape-title">Your shape, not a circle.</h2>
+      <p class="lede">Circles are lazy, and your library isn't round. Trace the real outline with one finger, and the café down the block stays yours.</p>
+      <p class="shape__explain">The dotted ring just wakes your phone up. Your shape decides what gets blocked.</p>
+    </div>
+    <div class="shape__card" data-fallback>
+      <figure class="spanel spanel--circle" role="img" aria-label="A circle around the library also covers the café down the block, so walking into the café keeps your apps blocked.">
+        <span class="spanel__label" aria-hidden="true">A circle</span>
+        <svg viewBox="0 0 520 340" aria-hidden="true">
+          <use href="#street-plan"/>
+          <circle class="sp-circle" cx="205" cy="152" r="165" fill="#6C63E6" fill-opacity=".22" stroke="#6C63E6" stroke-width="2.5"/>
+          <g class="walker"><circle r="18" fill="#fff" fill-opacity=".14"/><circle r="13" fill="#fff" stroke="#6C63E6" stroke-width="2.5"/><text class="st st--you2" y="3.5" text-anchor="middle">you</text><g transform="translate(13 -13)"><circle r="9.5" fill="#6C63E6" stroke="#141417" stroke-width="2"/><use class="su" href="#i-lock" x="-6" y="-6" width="12" height="12"/></g></g>
+        </svg>
+        <span class="spanel__chips" aria-hidden="true"><span class="schip schip--a"><svg class="ic ic--b"><use href="#i-lock"/></svg>Library: blocked</span><span class="schip schip--b schip--lock"><svg class="ic ic--b"><use href="#i-lock"/></svg>Café: blocked too</span></span>
+      </figure>
+      <figure class="spanel spanel--shape" role="img" aria-label="Your traced library outline with a dotted wake-up ring around it. Walking out of the outline into the café unblocks your apps, even inside the ring.">
+        <span class="spanel__label" aria-hidden="true">Your shape</span>
+        <svg viewBox="0 0 520 340" aria-hidden="true">
+          <use href="#street-plan"/>
+          <circle cx="205" cy="152" r="165" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="1.5" stroke-dasharray="3 7"/>
+          <rect x="13" y="141" width="86" height="22" rx="11" fill="#1C1C1F" stroke="#3A3A40"/><text class="st st--chip" x="56" y="156" text-anchor="middle">wake-up ring</text>
+          <path class="sp-off" d="M120 111H290V155H226V193H120Z" fill="#fff" fill-opacity=".1" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/>
+          <path class="sp-on" d="M120 111H290V155H226V193H120Z" fill="#6C63E6" fill-opacity=".3" stroke="#6C63E6" stroke-width="3" stroke-linejoin="round"/>
+          <g class="walker"><circle r="18" fill="#fff" fill-opacity=".14"/><circle r="13" fill="#fff" stroke="#6C63E6" stroke-width="2.5"/><text class="st st--you2" y="3.5" text-anchor="middle">you</text><g transform="translate(13 -13)"><g class="wb-lock"><circle r="9.5" fill="#6C63E6" stroke="#141417" stroke-width="2"/><use class="su" href="#i-lock" x="-6" y="-6" width="12" height="12"/></g><g class="wb-open"><circle r="9.5" fill="#fff" stroke="#141417" stroke-width="2"/><use class="su su--k" href="#i-unlock" x="-6" y="-6" width="12" height="12"/></g></g></g>
+        </svg>
+        <span class="spanel__chips" aria-hidden="true"><span class="schip schip--a"><svg class="ic ic--b"><use href="#i-lock"/></svg>Library: blocked</span><span class="schip schip--b"><svg class="ic ic--b"><use href="#i-unlock"/></svg>Café: all yours</span></span>
+      </figure>
+    </div>
+    <p class="shape__foot small muted">Your line has a soft edge: you count as inside up to about 15 m (50 ft) past it, and as outside once you're about 25 m (80 ft) plus GPS error beyond it. A café right across a narrow street can still get caught. Zones can't tell floors apart, so a zone around the library covers every floor.</p>
+  </div>
+</section>
 
-<footer class="site">
-  &copy; 2026 Ben Hirsch &middot; <a href="support/">Support</a> &middot; <a href="privacy/">Privacy</a>
-</footer>
+<section class="sec any" id="anywhere" aria-labelledby="any-title">
+  <div class="wrap any__grid">
+    <div class="any__copy">
+      <p class="label">No zone needed</p>
+      <h2 class="h2" id="any-title">Not at your spot? Hold to lock in.</h2>
+      <p class="lede">Hold the lock for one second and you're locked in, wherever you are. No location needed. Ending takes a longer hold, so quitting is a decision, not a reflex.</p>
+      <ul class="ticks" role="list">
+        <li><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg>A 25-minute ring. Fill it and a meme drop unlocks in your Recap (up to 12 a week).</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-pencil"/></svg>Lock in inside a zone and your plan for that spot shows here too.</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-help"/></svg>Stuck? Tiny next steps and a 30-second breather.</li>
+      </ul>
+      <div class="demo" data-hold>
+        <div class="demo__row">
+          <button class="shutter" type="button" aria-label="Hold to lock in" disabled data-hold-btn>
+            <span class="shutter__ring" aria-hidden="true"><svg viewBox="0 0 88 88"><circle class="shutter__track" cx="44" cy="44" r="40"/><circle class="shutter__fill" cx="44" cy="44" r="40" pathLength="100"/></svg><span class="shutter__disc"><svg class="ic ic--b"><use href="#i-lock"/></svg></span></span>
+            <span class="shutter__label" aria-hidden="true"><span class="sl-idle">Hold to lock in</span><span class="sl-hold">Keep holding</span></span>
+          </button>
+          <svg class="mascot demo__mascot" viewBox="0 0 120 120" aria-hidden="true"><path class="m-shackle" d="M40 54V42a20 20 0 0 1 40 0V54"/><g class="m-body"><rect x="24" y="50" width="72" height="58" rx="20"/><use href="#e-focus"/><g class="m-mouth m-mouth--flat"><use href="#mo-flat"/></g><g class="m-mouth m-mouth--smile"><use href="#mo-smile"/></g></g></svg>
+        </div>
+        <p class="demo__status" role="status" data-hold-status></p>
+      </div>
+      <p class="demo__note small muted">Just a demo. Nothing on your device gets blocked.</p>
+    </div>
+    <div class="any__phone">
+      <figure class="phone phone--md" role="img" aria-label="Lockspot's lock-in screen: a purple ring 18 minutes and 47 seconds into a 25-minute lock-in, the next meme drop in 6 minutes, a line from the padlock, and a Hold to end button." data-ring>
+        <div class="phone__frame"><div class="phone__screen">
+          <div class="app app--locked" aria-hidden="true">
+            <div class="a-lk__top"><span class="a-word a-word--sm"><span class="a-word__tile"></span>lockspot</span><span class="a-pill-s"><svg class="ic ic--c"><use href="#i-pin"/></svg>Anywhere</span></div>
+            <div class="a-ring">
+              <svg viewBox="0 0 232 232"><circle cx="116" cy="116" r="110" class="a-ring__track"/><circle cx="116" cy="116" r="110" class="a-ring__fill" pathLength="100"/></svg>
+              <span class="a-ring__mid"><span class="a-ring__k">Locked in</span><span class="a-ring__t">18:47</span><span class="a-ring__s">of 25:00</span></span>
+            </div>
+            <p class="a-next">Next meme drop in 06:13.</p>
+            <div class="a-card a-card--line"><svg class="a-mascot" viewBox="0 0 120 120"><use href="#m-base"/><use href="#e-focus"/><use href="#mo-smile"/></svg><span>The algorithm is bored. Good.</span></div>
+            <div class="a-card a-card--block"><span>Your apps stay blocked until you end this session.</span><b>4 apps + 1 category</b></div>
+            <div class="a-lk__btns"><span class="a-pill"><svg class="ic"><use href="#i-help"/></svg>Stuck?</span><span class="a-pill a-pill--grow">Hold to end</span></div>
+            <div class="a-sb"><span>9:41</span><svg><use href="#sb-icons"/></svg></div>
+          </div>
+        </div></div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec memes" id="memes" aria-labelledby="memes-title">
+  <div class="wrap memes__grid">
+    <div class="memes__copy">
+      <p class="label">Meme drops</p>
+      <h2 class="h2" id="memes-title">We roast the apps. Never you.</h2>
+      <p class="lede">Every 25 minutes you stay locked in unlocks an original meme drop in your Recap. Up to 12 a week, with a fresh set every Monday. They roast the feed, the algorithm and the group chat, never the person holding the phone.</p>
+      <p class="memes__lead">While you're locked in, the padlock keeps you company with a new line every few seconds.</p>
+      <ul class="lines" role="list">
+        <li>Phone face down. We've got the rest.</li>
+        <li>The algorithm is bored. Good.</li>
+        <li>Quiet phone, loud progress.</li>
+      </ul>
+    </div>
+    <div class="memes__card">
+      <div class="meme-big" data-meme data-eyes="focus" data-mouth="smile" aria-live="off">
+        <p class="meme-cap meme-cap--t" data-meme-top>the apps are</p>
+        <svg class="meme-face" viewBox="0 0 120 120" aria-hidden="true"><use href="#m-base"/><g class="mf-eyes"><use class="mf mf--focus" href="#e-focus"/><use class="mf mf--wide" href="#e-wide"/><use class="mf mf--side" href="#e-side"/><use class="mf mf--tired" href="#e-tired"/></g><use class="mm mm--flat" href="#mo-flat"/><use class="mm mm--smile" href="#mo-smile"/></svg>
+        <p class="meme-cap meme-cap--b" data-meme-bottom>in timeout</p>
+      </div>
+      <div class="meme-ctrl">
+        <button class="btn btn--secondary btn--sm" type="button" data-meme-next><svg class="ic" aria-hidden="true"><use href="#i-next"/></svg>Another one</button>
+        <button class="btn btn--secondary btn--sm" type="button" data-meme-toggle><svg class="ic ic-pause" aria-hidden="true"><use href="#i-pause"/></svg><svg class="ic ic-play" aria-hidden="true"><use href="#i-play"/></svg><span data-meme-toggle-label>Pause</span></button>
+      </div>
+      <p class="sr-only" role="status" data-meme-status></p>
+    </div>
+    <figure class="drops" role="img" aria-label="The Meme drops part of Lockspot's Recap: a grid of unlocked meme cards, plus locked cards that open after more locked-in minutes." data-reveal>
+      <div class="drops__in" aria-hidden="true">
+        <p class="drops__title">Meme drops</p>
+        <p class="drops__sub">One unlocks for every 25 minutes you stay locked in.</p>
+        <div class="drops__grid">
+          <div class="mt"><svg viewBox="0 0 120 120"><use href="#m-base"/><use href="#e-side"/><use href="#mo-flat"/></svg><span class="mt__t">the algorithm</span><span class="mt__b">is not your study buddy</span></div>
+          <div class="mt"><svg viewBox="0 0 120 120"><use href="#m-base"/><use href="#e-tired"/><use href="#mo-flat"/></svg><span class="mt__t">the feed is</span><span class="mt__b">mostly reruns anyway</span></div>
+          <div class="mt"><svg viewBox="0 0 120 120"><use href="#m-base"/><use href="#e-focus"/><use href="#mo-smile"/></svg><span class="mt__t">notifications muted</span><span class="mt__b">brain unmuted</span></div>
+          <div class="mt"><svg viewBox="0 0 120 120"><use href="#m-base"/><use href="#e-side"/><use href="#mo-flat"/></svg><span class="mt__t">the feed</span><span class="mt__b">never once taught calculus</span></div>
+          <div class="mt mt--unlock"><svg viewBox="0 0 120 120"><use href="#m-base"/><use href="#e-focus"/><use href="#mo-smile"/></svg><span class="mt__t">future you</span><span class="mt__b">says thanks</span><span class="mt__lock"><svg class="ic"><use href="#i-lock"/></svg>Unlocks in 6 min</span></div>
+          <div class="mt mt--locked"><span class="mt__lock"><svg class="ic"><use href="#i-lock"/></svg>Lock in 25 min</span></div>
+        </div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="sec streak" id="streak" aria-labelledby="streak-title">
+  <div class="wrap streak__grid">
+    <div class="streak__copy">
+      <p class="label">Streaks and Recap</p>
+      <h2 class="h2" id="streak-title">A streak that forgives.</h2>
+      <p class="lede">Lock in 25 minutes in a day and your streak grows. Zone time counts too. Miss a day and the weekly freeze covers it, automatically. Miss two in a row and you start fresh. Forgiving, not a pushover.</p>
+      <p class="chip streak__rule"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Today never counts against you until it's over.</p>
+      <div class="scard" data-reveal>
+        <div class="scard__top">
+          <span class="scard__ic"><svg class="ic ic--b" aria-hidden="true"><use href="#i-lock"/></svg></span>
+          <p class="scard__num"><span class="sr-only">12 day streak</span><span aria-hidden="true"><span class="tnum" data-count="12">12</span> day streak</span></p>
+          <p class="scard__best">best 19</p>
+        </div>
+        <p class="scard__freeze"><svg class="ic" aria-hidden="true"><use href="#i-freeze"/></svg>Freeze: used, back Monday</p>
+        <div class="week">
+          <p class="label">How the freeze works</p>
+          <ol class="week__days" role="list">
+            <li class="day day--done"><span class="day__dot"><svg class="ic ic--c" aria-hidden="true"><use href="#i-check"/></svg></span><span aria-hidden="true">M</span><span class="sr-only">Monday: locked in</span></li>
+            <li class="day day--done"><span class="day__dot"><svg class="ic ic--c" aria-hidden="true"><use href="#i-check"/></svg></span><span aria-hidden="true">T</span><span class="sr-only">Tuesday: locked in</span></li>
+            <li class="day day--freeze"><span class="day__dot"><span class="day__miss"></span><svg class="ic" aria-hidden="true"><use href="#i-freeze"/></svg></span><span aria-hidden="true">W</span><span class="day__note" aria-hidden="true">Freeze used</span><span class="sr-only">Wednesday: missed, covered by the freeze</span></li>
+            <li class="day day--done"><span class="day__dot"><svg class="ic ic--c" aria-hidden="true"><use href="#i-check"/></svg></span><span aria-hidden="true">T</span><span class="sr-only">Thursday: locked in</span></li>
+            <li class="day day--done"><span class="day__dot"><svg class="ic ic--c" aria-hidden="true"><use href="#i-check"/></svg></span><span aria-hidden="true">F</span><span class="sr-only">Friday: locked in</span></li>
+            <li class="day day--next"><span class="day__dot"></span><span aria-hidden="true">S</span><span class="sr-only">Saturday: still to come</span></li>
+            <li class="day day--next"><span class="day__dot"></span><span aria-hidden="true">S</span><span class="sr-only">Sunday: still to come</span></li>
+          </ol>
+        </div>
+      </div>
+      <h3 class="h3 streak__h3">Receipts for your week.</h3>
+      <p>Recap shows how long you locked in, where, and on which days. Share it as text if you're proud of it. It stays on your phone unless you send it.</p>
+    </div>
+    <div class="streak__phone">
+      <div class="streak__stage">
+        <figure class="phone phone--md" role="img" aria-label="Lockspot's Recap screen for a sample week: 11 hours 40 minutes locked in, up 2 hours from last week, a 12 day streak, a bar for each day, and time by zone: Library 5 hours 10 minutes, Dorm 3 hours 5 minutes, Lecture Hall B 2 hours 5 minutes, Anywhere 1 hour 20 minutes." data-reveal>
+          <div class="phone__frame"><div class="phone__screen">
+            <div class="app app--recap" aria-hidden="true">
+              <div class="a-rc">
+                <div class="a-rc__head"><span class="a-title">Recap</span><span class="a-round"><svg class="ic"><use href="#i-share"/></svg></span></div>
+                <div class="a-card a-rc__week">
+                  <div class="a-rc__top">
+                    <div><span class="a-rc__k">This week</span><span class="a-rc__v">11h 40m</span><span class="a-rc__s">locked in, up 2h from last week</span></div>
+                    <div class="a-rc__streak"><span>12</span><i>day streak</i></div>
+                  </div>
+                  <div class="a-bars"><span class="a-bar"><i class="b1"></i>M</span><span class="a-bar"><i class="b2"></i>T</span><span class="a-bar"><i class="b3"></i>W</span><span class="a-bar"><i class="b4"></i>T</span><span class="a-bar a-bar--today"><i class="b5"></i>F</span><span class="a-bar a-bar--next"><i class="b6"></i>S</span><span class="a-bar a-bar--next"><i class="b7"></i>S</span></div>
+                </div>
+                <p class="a-label">Where you locked in this week</p>
+                <div class="a-tiles">
+                  <span class="a-tile a-tile--on"><b>Library</b><em>5h 10m</em><i>9 sessions</i></span>
+                  <span class="a-tile"><b>Dorm</b><em>3h 05m</em><i>6 sessions</i></span>
+                  <span class="a-tile"><b>Lecture Hall B</b><em>2h 05m</em><i>4 sessions</i></span>
+                  <span class="a-tile"><b>Anywhere</b><em>1h 20m</em><i>3 sessions</i></span>
+                </div>
+                <p class="a-rc__drops">Meme drops</p>
+              </div>
+              <div class="a-nav">
+                <span class="a-dots"><i></i><i></i><i class="on"></i></span>
+                <span class="a-nav__row"><span class="a-navbtn"><svg class="ic"><use href="#i-squad"/></svg></span><span class="a-shutter"><svg class="a-shutter__ring" viewBox="0 0 88 88"><circle cx="44" cy="44" r="40"/></svg><span class="a-shutter__disc"><svg class="ic ic--b"><use href="#i-lock"/></svg></span></span><span class="a-navbtn a-navbtn--on"><svg class="ic"><use href="#i-recap"/></svg></span></span>
+                <span class="a-nav__label">Hold to lock in</span>
+              </div>
+              <div class="a-sb"><span>9:41</span><svg><use href="#sb-icons"/></svg></div>
+            </div>
+          </div></div>
+        </figure>
+        <figure class="share">
+          <span class="share__ic"><svg class="ic" aria-hidden="true"><use href="#i-share"/></svg></span>
+          <blockquote>This week on Lockspot: 11h 40m locked in. 12 day streak. The apps did not enjoy it.</blockquote>
+          <figcaption class="sr-only">What a shared Recap says</figcaption>
+        </figure>
+      </div>
+      <p class="phone-cap small muted">Sample week. Yours will look different.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec priv" id="privacy" aria-labelledby="priv-title">
+  <div class="wrap">
+    <div class="priv__grid">
+      <div class="priv__copy">
+        <p class="label">Privacy</p>
+        <h2 class="h2" id="priv-title">Your spots stay on your phone.</h2>
+        <p class="lede">Your zones, your location, your app picks, your streak and your recap live on your iPhone. They're never sent to us or to anyone else. No ads, no tracking.</p>
+        <p class="muted">The map is Apple Maps, so Apple serves the map tiles under its own privacy policy. Your recap and invites go out only when you share them yourself.</p>
+      </div>
+      <figure class="priv__diagram" role="img" aria-label="A phone outline holding three things: your zones, your app picks and your streak and recap. Each one runs to the edge of the phone and stops at a closed padlock." data-reveal>
+        <svg viewBox="0 0 400 360" aria-hidden="true">
+          <rect x="70" y="12" width="250" height="336" rx="40" fill="#141417" stroke="#2E2E33" stroke-width="2"/>
+          <g class="pd-row"><rect x="90" y="74" width="174" height="48" rx="24" fill="#1C1C1F" stroke="#34343B"/><path d="M108 90l11-2.5 6 7.5-3.5 11-12.5-2.5z" fill="#6C63E6" fill-opacity=".35" stroke="#6C63E6" stroke-width="2" stroke-linejoin="round"/><text class="st st--pd" x="136" y="103">Your zones</text><path class="pd-line" d="M268 98H303" stroke="#fff" stroke-opacity=".5" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/><g class="pd-lock" transform="translate(320 98)"><circle r="15" fill="#0E0E10" stroke="#6C63E6" stroke-width="2"/><path class="pd-shackle" d="M-4.5-1.5v-3.5a4.5 4.5 0 0 1 9 0v3.5" fill="none" stroke="#fff" stroke-width="2"/><rect x="-6.5" y="-2" width="13" height="10" rx="2.5" fill="#fff"/></g></g>
+          <g class="pd-row"><rect x="90" y="156" width="174" height="48" rx="24" fill="#1C1C1F" stroke="#34343B"/><g fill="#26262A" stroke="#4A4A52"><rect x="106" y="168" width="11" height="11" rx="3"/><rect x="120" y="168" width="11" height="11" rx="3"/><rect x="106" y="182" width="11" height="11" rx="3"/><rect x="120" y="182" width="11" height="11" rx="3"/></g><g class="st st--q"><text x="111.5" y="177" text-anchor="middle">?</text><text x="125.5" y="177" text-anchor="middle">?</text><text x="111.5" y="191" text-anchor="middle">?</text><text x="125.5" y="191" text-anchor="middle">?</text></g><text class="st st--pd" x="141" y="185">App picks</text><path class="pd-line" d="M268 180H303" stroke="#fff" stroke-opacity=".5" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/><g class="pd-lock" transform="translate(320 180)"><circle r="15" fill="#0E0E10" stroke="#6C63E6" stroke-width="2"/><path class="pd-shackle" d="M-4.5-1.5v-3.5a4.5 4.5 0 0 1 9 0v3.5" fill="none" stroke="#fff" stroke-width="2"/><rect x="-6.5" y="-2" width="13" height="10" rx="2.5" fill="#fff"/></g></g>
+          <g class="pd-row"><rect x="90" y="238" width="174" height="48" rx="24" fill="#1C1C1F" stroke="#34343B"/><use class="su" href="#i-lock" x="105" y="252" width="20" height="20"/><text class="st st--pd" x="133" y="267">Streak + recap</text><path class="pd-line" d="M268 262H303" stroke="#fff" stroke-opacity=".5" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/><g class="pd-lock" transform="translate(320 262)"><circle r="15" fill="#0E0E10" stroke="#6C63E6" stroke-width="2"/><path class="pd-shackle" d="M-4.5-1.5v-3.5a4.5 4.5 0 0 1 9 0v3.5" fill="none" stroke="#fff" stroke-width="2"/><rect x="-6.5" y="-2" width="13" height="10" rx="2.5" fill="#fff"/></g></g>
+        </svg>
+      </figure>
+    </div>
+    <ul class="facts" role="list">
+      <li><span class="facts__n">0</span><span class="facts__l">ads</span></li>
+      <li><span class="facts__n">0</span><span class="facts__l">trackers</span></li>
+      <li><span class="facts__n">0</span><span class="facts__l">locations sent</span></li>
+      <li><span class="facts__n">0</span><span class="facts__l">app names seen</span></li>
+    </ul>
+    <p class="facts__note">Two things do leave your phone, because a membership needs them: your account and your purchase status.</p>
+    <ul class="prows" role="list">
+      <li><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><p>Location is checked on your iPhone to see if you're inside a zone. Lockspot never sends it anywhere, not even to your account.</p></li>
+      <li><svg class="ic" aria-hidden="true"><use href="#i-apps"/></svg><p>Screen Time gives Lockspot anonymous tokens, not app names. It can't see what you use or for how long.</p></li>
+      <li class="prows__wide"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg><p>Your account is an ID from Sign in with Apple, or your email address if you sign in with a code. Supabase, Lockspot's sign-in service, holds it. RevenueCat, its subscription service, keeps your purchase status. Both are used only to run Lockspot, never for ads, and you can delete your account in the app at any time.</p></li>
+    </ul>
+    <p class="priv__more"><a class="text-link" href="privacy/">Read the privacy policy</a></p>
+    <p class="small muted">This website is the same: no cookies, no analytics, no trackers.</p>
+  </div>
+</section>
+
+<section class="sec faqsec" id="faq" aria-labelledby="faq-title">
+  <div class="wrap faq__grid">
+    <div class="faq__side">
+      <h2 class="h2" id="faq-title">Fair questions.</h2>
+      <p class="muted">Something else? The <a href="support/">support page</a> has fixes and a way to reach us.</p>
+    </div>
+    <div class="faq">
+      <details><summary>What does Lockspot cost?</summary><div class="answer"><p>Lockspot is free to download, and using it takes a Lockspot Pro membership. The yearly plan is $29.99 a year and starts with 7 days free if you're a new subscriber. The monthly plan is $6.99 a month, with no trial.</p><p>Those are US prices. The App Store sets the price in your country, so it can be different there. Apple bills your Apple Account, and the membership renews until you cancel.</p></div></details>
+      <details><summary>How do I cancel?</summary><div class="answer"><p>On your iPhone, open Settings, tap your name, then Subscriptions &gt; Lockspot &gt; Cancel Subscription. In Lockspot, Settings &gt; Account &gt; Manage subscription takes you to the same place.</p><p>To avoid the next charge, cancel at least 24 hours before your trial or your current period ends. Lockspot keeps working until the date Apple shows there. After that, your zones pause and every block lifts.</p></div></details>
+      <details><summary>Can I get a refund?</summary><div class="answer"><p>Apple handles every payment, so refunds go through Apple. Follow <a href="https://support.apple.com/en-us/118223">Apple's refund steps</a>; Apple makes the decision.</p></div></details>
+      <details><summary>Is there an account?</summary><div class="answer"><p>Yes. You make one during setup with Sign in with Apple, or with your email address and a 6-digit code. There's no password. Signing in with Apple doesn't give Lockspot your name or email.</p><p>Your account holds your membership. Your zones, your location and your app picks stay on your phone.</p></div></details>
+      <details><summary>How do I restore my membership on a new iPhone?</summary><div class="answer"><p>Sign in to Lockspot the same way you did before, then tap Restore on the membership screen or in Settings &gt; Account. Restore looks for Lockspot Pro on the Apple Account you use for the App Store.</p></div></details>
+      <details><summary>How do I delete my account?</summary><div class="answer"><p>In Lockspot, open Settings &gt; Account &gt; Delete account. If you haven't subscribed, it's also under the Account button at the top right of the membership screen.</p><p>Deleting your account doesn't cancel an App Store subscription, so Lockspot offers to manage that first. Then it deletes your account and your membership record and signs you out.</p></div></details>
+      <details><summary>Is it on Android or iPad?</summary><div class="answer"><p>Not right now. Lockspot is just for iPhone. The support page lists the software version it needs.</p></div></details>
+      <details><summary>What does it need from me?</summary><div class="answer"><p>An account and a Lockspot Pro membership. Screen Time access, so it can block the apps you pick. For zones, location set to Always with Precise Location on, so zones work while the app is closed. Without location you can still hold to lock in.</p></div></details>
+      <details><summary>Does Lockspot track me?</summary><div class="answer"><p>No. Your iPhone checks your location against your zones right on the phone, and your location never leaves it, not even to your account. Lockspot has no ads, doesn't track you across apps or websites, and doesn't measure how you use the app.</p></div></details>
+      <details><summary>Can Lockspot see which apps I use?</summary><div class="answer"><p>No. When you pick apps in Apple's Screen Time list, your iPhone gives Lockspot anonymous tokens. Lockspot can block those apps but can't read their names or your usage.</p></div></details>
+      <details><summary>How fast does a zone switch on?</summary><div class="answer"><p>With Lockspot open, within seconds. With it closed, usually within 1 to 3 minutes of walking in or out. Indoors, GPS can drift about 15 m, so draw your zone a bit bigger than the building. Zones need to cover at least about 2,000 m², roughly 45 m (150 ft) on each side, and they can't tell floors apart: a zone around the library covers every floor. Low Power Mode, or turning off Background App Refresh, can pause zones. Opening Lockspot catches up.</p></div></details>
+      <details><summary>Does it work without Wi-Fi or data?</summary><div class="answer"><p>Mostly. Zone checks and blocking happen on your iPhone and don't use the internet, and Lockspot remembers your membership, so being offline for a while won't lock you out. Signing in, buying or restoring a membership, and drawing a new zone on Apple Maps need a connection. Location can be less exact with weak signal. Hold to lock in works anywhere.</p></div></details>
+      <details><summary>What happens when I open a blocked app?</summary><div class="answer"><p>You'll see Apple's Screen Time screen saying it's blocked. The memes live in Lockspot: in your Recap and on the lock-in screen.</p></div></details>
+      <details><summary>What if I really need an app?</summary><div class="answer"><p>You can always get out. Hold to end a lock-in, walk out of the zone, delete the zone, or turn off Lockspot's Screen Time access in Settings. None of these needs a membership. It's a self-control tool, not a cage, so don't count on it in an emergency.</p></div></details>
+      <details><summary>Does it drain my battery?</summary><div class="answer"><p>It's built to be light. Your iPhone wakes Lockspot when you get near a zone, at the dotted ring, instead of tracking you all day. We haven't published battery tests, so if you notice a drain, tell us on the support page.</p></div></details>
+      <details><summary>Can I lock in with friends?</summary><div class="answer"><p>You can send a friend an invite from the Squad tab. You each lock in on your own phone, with your own membership, and compare streaks yourselves.</p></div></details>
+      <details><summary>Can parents use it to control a kid's phone?</summary><div class="answer"><p>No. Lockspot is for the person holding the phone, and that person can always turn it off. It isn't built for monitoring or restricting anyone else.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<section class="sec get" id="get" aria-labelledby="get-title">
+  <div class="wrap">
+    <div class="band" data-band>
+      <svg class="mascot band__mascot" viewBox="0 0 120 120" aria-hidden="true"><path class="m-shackle" d="M40 54V42a20 20 0 0 1 40 0V54"/><g class="m-body"><rect x="24" y="50" width="72" height="58" rx="20"/><g class="m-eyes m-eyes--side"><use href="#e-side"/></g><g class="m-eyes m-eyes--focus"><use href="#e-focus"/></g><g class="m-mouth m-mouth--flat"><use href="#mo-flat"/></g><g class="m-mouth m-mouth--smile"><use href="#mo-smile"/></g></g></svg>
+      <div class="band__copy">
+        <h2 class="h2" id="get-title">Pick a spot. Lock in.</h2>
+        <p class="lede"><span class="if-prelaunch">Lockspot is coming to iPhone.</span><span class="if-launched">Lockspot is on iPhone now.</span> New subscribers get 7 days free on the yearly plan, then US$29.99 a year. Your zones and location stay on your phone.</p>
+        <div class="band__cta">
+          <p class="cta-soon if-prelaunch"><svg class="ic ic--b" aria-hidden="true"><use href="#i-lock"/></svg>Coming soon on the App Store</p>
+          <a class="cta-soon if-prelaunch" href="https://apps.apple.com/app/id6824683190"><svg class="ic ic--b" aria-hidden="true"><use href="#i-lock"/></svg>Coming soon on the App Store</a>
+          <a class="btn btn--primary if-launched" href="https://apps.apple.com/app/id6824683190">Get Lockspot on the App Store</a>
+          <button class="btn btn--secondary if-launched qr-open" type="button" data-qr-open>Scan with your iPhone</button>
+        </div>
+      </div>
+    </div>
+    <dialog class="qr" aria-labelledby="qr-title" data-qr>
+      <h3 class="h3" id="qr-title">Get Lockspot on your iPhone</h3>
+      <div class="qr__code" role="img" aria-label="QR code that opens Lockspot on the App Store"></div>
+      <p>Point your iPhone camera at the code.</p>
+      <button class="btn btn--secondary btn--sm" type="button" data-qr-close>Close</button>
+    </dialog>
+  </div>
+</section>
+
 </main>
+<!-- shared:footer -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div>
+        <a class="wordmark" href="./" aria-label="Lockspot home"><span class="wordmark__tile" aria-hidden="true"></span><span aria-hidden="true">lockspot</span></a>
+        <p class="tag">Draw a zone. Lock in.</p>
+        <p>Lockspot is made by Benjamin Hirsch.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul class="foot-links">
+          <li><a href="./" aria-current="page">Home</a></li>
+          <li><a href="privacy/">Privacy</a></li>
+          <li><a href="terms/">Terms</a></li>
+          <li><a href="support/">Support</a></li>
+          <li><a href="accessibility/">Accessibility</a></li>
+          <li><a href="licenses/">Licenses</a></li>
+        </ul>
+      </nav>
+      <div>
+        <p>This site sets no cookies and runs no analytics.</p>
+        <p class="if-prelaunch">Apple and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries and regions. App Store is a service mark of Apple Inc.</p>
+        <p class="if-launched">Apple, the Apple logo and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries and regions. App Store is a service mark of Apple Inc.</p>
+        <p>Lockspot is not affiliated with or endorsed by Apple Inc.</p>
+      </div>
+    </div>
+    <p class="copy">&copy; 2026 Benjamin Hirsch</p>
+  </div>
+</footer>
+<!-- /shared:footer -->
 </body>
 </html>

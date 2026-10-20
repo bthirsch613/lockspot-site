@@ -1,65 +1,171 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-launched="false">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
 <title>Support · Lockspot</title>
-<meta name="description" content="Help with Lockspot: zones, blocking, lock-in sessions and permissions.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;800&display=swap">
+<meta name="description" content="Help with Lockspot: zones, blocking, lock-ins and permissions, signing in, restoring or cancelling a membership, deleting your account, and how to reach the person who makes it.">
+<link rel="canonical" href="https://bthirsch613.github.io/lockspot-site/support/">
+<meta name="theme-color" content="#0E0E10">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lockspot">
+<meta property="og:title" content="Support · Lockspot">
+<meta property="og:description" content="Help with Lockspot: zones, blocking, lock-ins and permissions, signing in, restoring or cancelling a membership, deleting your account, and how to reach the person who makes it.">
+<meta property="og:url" content="https://bthirsch613.github.io/lockspot-site/support/">
+<meta property="og:image" content="https://bthirsch613.github.io/lockspot-site/assets/img/og.png">
+<meta property="og:image:alt" content="The Lockspot padlock mascot next to the words Draw a zone. Lock in.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preload" href="../assets/fonts/PlusJakartaSans-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/PlusJakartaSans-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/js-flag.js"></script>
+<script src="../assets/site.js" defer></script>
 </head>
 <body>
-<main>
-<header class="site">
-  <a class="brand" href="../"><span class="brand-mark" aria-hidden="true"></span>Lockspot</a>
-  <nav class="site" aria-label="Site">
-    <a href="./" aria-current="page">Support</a>
-    <a href="../privacy/">Privacy</a>
-  </nav>
+<!-- shared:header -->
+<a class="skip" href="#main">Skip to content</a>
+<div class="sentinel" aria-hidden="true"></div>
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="wordmark" href="../" aria-label="Lockspot home"><span class="wordmark__tile" aria-hidden="true"></span><span aria-hidden="true">lockspot</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <a class="nav-how" href="../#how">How it works</a>
+      <a class="hide-sm" href="../privacy/">Privacy</a>
+      <a class="hide-sm" href="../support/" aria-current="page">Support</a>
+      <a class="btn btn--primary btn--sm header-get if-launched" href="https://apps.apple.com/app/id6824683190" aria-label="Get Lockspot on the App Store"><span class="hide-sm">Get Lockspot</span><span class="show-sm">Get</span></a>
+    </nav>
+  </div>
 </header>
+<!-- /shared:header -->
+<main id="main" class="page">
+  <div class="wrap">
+    <div class="prose">
+      <h1>Support</h1>
+      <p class="intro">Quick fixes for the things that trip people up, including signing in and your membership. If none of these help, ask at the bottom of the page.</p>
+      <p class="meta">Lockspot is made by Benjamin Hirsch.</p>
 
-<h1>Support</h1>
-<p class="lede">Quick fixes for the things that trip people up. If none of these help, ask us at the bottom of the page.</p>
+      <div class="fixes">
+        <section class="card" aria-labelledby="fix-zone">
+          <h2 id="fix-zone">My zone isn't blocking anything</h2>
+          <ul>
+            <li>Your Lockspot Pro membership must be active, and a free trial counts. Check Lockspot &gt; Settings &gt; Account.</li>
+            <li>Location must be set to <strong>Always</strong> with <strong>Precise Location</strong> on: Settings &gt; Apps &gt; Lockspot &gt; Location (on iOS 17 or earlier: Settings &gt; Lockspot &gt; Location).</li>
+            <li>Screen Time access must be on, and you need at least one app picked (Lockspot &gt; Settings &gt; Edit blocked apps).</li>
+            <li><strong>Low Power Mode</strong> and turning off <strong>Background App Refresh</strong> can pause zones. Opening Lockspot catches up straight away.</li>
+            <li>After restarting your iPhone, zones start again once you unlock it.</li>
+            <li>Indoors, GPS can drift about 15 m. Draw your zone a little bigger than the building. Zones need to cover at least about 2,000 m², roughly 45 m (150 ft) on each side.</li>
+            <li>Zones can't tell floors apart, so a zone around the library covers every floor.</li>
+            <li>Typical timing: with the app closed, a zone switches within 1–3 minutes of walking in or out. With it open, within seconds.</li>
+          </ul>
+        </section>
 
-<div class="card">
-  <h2>My zone isn't blocking anything</h2>
-  <ul>
-    <li>Location must be set to <strong>Always</strong> with <strong>Precise Location</strong> on: Settings &gt; Lockspot &gt; Location.</li>
-    <li>Screen Time access must be on, and you need at least one app picked (Lockspot &gt; Settings &gt; Edit blocked apps).</li>
-    <li><strong>Low Power Mode</strong> and turning off <strong>Background App Refresh</strong> can pause zones. Opening Lockspot catches up straight away.</li>
-    <li>After restarting your iPhone, zones start again once you unlock it.</li>
-    <li>Indoors, GPS can drift about 15 m. Draw your zone a little bigger than the room.</li>
-    <li>With the app closed, a zone usually switches within 1–3 minutes of walking. With it open, within seconds.</li>
-  </ul>
-</div>
+        <section class="card" aria-labelledby="fix-left">
+          <h2 id="fix-left">My apps are still blocked after I left</h2>
+          <p>Open Lockspot. It checks where you are and lifts the block if you're outside every zone. If you started a lock-in by holding the button, that stays on until you hold <strong>Hold to end</strong>.</p>
+        </section>
 
-<div class="card">
-  <h2>My apps are still blocked after I left</h2>
-  <p>Open Lockspot. It checks where you are and lifts the block if you're outside every zone. If you started a lock-in by holding the button, that stays on until you hold <strong>Hold to end</strong>.</p>
-</div>
+        <section class="card" aria-labelledby="fix-off">
+          <h2 id="fix-off">How do I turn everything off?</h2>
+          <ul>
+            <li>End a lock-in: hold <strong>Hold to end</strong> on the locked-in screen.</li>
+            <li>Delete a zone: tap it in the list on the map screen, then Delete.</li>
+            <li>Stop all blocking: remove Lockspot's access in Settings &gt; Screen Time, or delete the app. Deleting the app lifts every block, but it doesn't cancel your membership or delete your account.</li>
+            <li>None of these needs a membership. If your membership ends, your zones pause and every block lifts on its own.</li>
+          </ul>
+        </section>
 
-<div class="card">
-  <h2>How do I turn everything off?</h2>
-  <ul>
-    <li>End a lock-in: hold <strong>Hold to end</strong> on the locked-in screen.</li>
-    <li>Delete a zone: tap it in the list on the map screen, then Delete.</li>
-    <li>Stop all blocking: remove Lockspot's access in Settings &gt; Screen Time, or delete the app. Deleting the app lifts every block.</li>
-  </ul>
-</div>
+        <section class="card" aria-labelledby="fix-picker">
+          <h2 id="fix-picker">The app picker shows nothing, or my picks disappeared</h2>
+          <p>If Screen Time access was turned off and on again, iOS forgets the old picks. Open Lockspot &gt; Settings &gt; Edit blocked apps and pick them again.</p>
+        </section>
 
-<div class="card">
-  <h2>The app picker shows nothing, or my picks disappeared</h2>
-  <p>If Screen Time access was turned off and on again, iOS forgets the old picks. Open Lockspot &gt; Settings &gt; Edit blocked apps and pick them again.</p>
-</div>
+        <section class="card" aria-labelledby="sign-in">
+          <h2 id="sign-in">I can't sign in</h2>
+          <ul>
+            <li><strong>Sign in with Apple:</strong> check that your iPhone is signed in to an Apple Account (Settings, then your name at the top) and that you're online, then try again.</li>
+            <li><strong>Email code:</strong> type the 6-digit code from the newest email Lockspot sent you. If nothing arrives within a few minutes, check your spam or junk folder and the spelling of your address, then ask for a new code.</li>
+            <li>Sign in the same way every time. Signing in with Apple and signing in with your email can make two separate accounts. If your membership is on the other one, tap <strong>Restore</strong> to move it to the account you're signed in to.</li>
+          </ul>
+        </section>
 
-<h2>Still stuck?</h2>
-<p><a class="button" href="https://github.com/bthirsch613/lockspot-site/issues/new">Ask a question</a></p>
-<p class="meta">Questions are posted publicly on GitHub, so leave out personal details. Include your iPhone model and iOS version.</p>
+        <section class="card" aria-labelledby="restore">
+          <h2 id="restore">My membership is missing on a new iPhone</h2>
+          <p>Sign in to Lockspot the same way you did before. Then tap <strong>Restore</strong> at the top left of the membership screen, or in Lockspot &gt; Settings &gt; Account. Restore looks for Lockspot Pro on the Apple Account you use for the App Store, so check that it's the one that paid (Settings &gt; your name &gt; Media &amp; Purchases). "No membership found for this Apple Account" means that Apple Account hasn't bought Lockspot Pro.</p>
+          <p>If Lockspot says <strong>Payment issue</strong>, Apple couldn't charge your payment method. Update it in Settings &gt; your name &gt; Payment &amp; Shipping. Apple may keep your membership active for a short grace period while you do.</p>
+        </section>
 
-<footer class="site">
-  &copy; 2026 Ben Hirsch &middot; <a href="../privacy/">Privacy</a> &middot; <a href="../">Home</a>
-</footer>
+        <section class="card" aria-labelledby="cancel">
+          <h2 id="cancel">How do I cancel my membership or trial?</h2>
+          <ul>
+            <li>On your iPhone, open Settings, tap your name, then <strong>Subscriptions</strong> &gt; Lockspot &gt; <strong>Cancel Subscription</strong>. In Lockspot, Settings &gt; Account &gt; Manage subscription opens the same screen.</li>
+            <li>To avoid the next charge, cancel at least 24 hours before your free trial or your current period ends.</li>
+            <li>Lockspot keeps working until the date shown there. After that, your zones pause and every block lifts. Your zones stay on your iPhone in case you come back.</li>
+            <li>Deleting the app or your account doesn't cancel the subscription.</li>
+            <li>Apple handles payments, so refunds go through Apple: follow <a href="https://support.apple.com/en-us/118223">Apple's refund steps</a>. We can't issue refunds ourselves.</li>
+          </ul>
+        </section>
+
+        <section class="card" aria-labelledby="delete-account">
+          <h2 id="delete-account">How do I delete my account?</h2>
+          <ul>
+            <li>In Lockspot, open Settings &gt; Account &gt; <strong>Delete account</strong>. If you haven't subscribed, tap the Account button at the top right of the membership screen instead.</li>
+            <li>Deleting your account doesn't cancel an App Store subscription, so Lockspot offers Manage subscription first.</li>
+            <li>Lockspot then deletes your account and your membership record and signs you out. If you signed in with Apple, it asks you to confirm with Apple once more. If that step can't finish, your account is still deleted; remove Lockspot's access yourself in Settings &gt; your name &gt; Sign in with Apple &gt; Lockspot &gt; Delete.</li>
+          </ul>
+        </section>
+
+        <section class="card" aria-labelledby="compat">
+          <h2 id="compat">Compatibility</h2>
+          <p>Lockspot needs an iPhone with iOS 16.4 or later.</p>
+        </section>
+      </div>
+
+      <section class="card contact" aria-labelledby="contact">
+        <h2 id="contact">Still stuck? Get in touch</h2>
+        <p>Ask a question on GitHub. You'll need a GitHub account, and questions are posted publicly, so leave out personal details.</p>
+        <p><a class="btn btn--primary" href="https://github.com/bthirsch613/lockspot-site/issues/new">Ask a question on GitHub</a></p>
+        <p><strong>Before you write:</strong> include your iPhone model and iOS version, and say whether you signed in with Apple or with email. Don't post receipts, order numbers or your email address.</p>
+        <p>Replies are best effort.</p>
+      </section>
+
+      <p class="meta">More about Lockspot: <a href="../privacy/">Privacy policy</a> · <a href="../terms/">Terms of use</a> · <a href="../accessibility/">Accessibility</a></p>
+    </div>
+  </div>
 </main>
+<!-- shared:footer -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div>
+        <a class="wordmark" href="../" aria-label="Lockspot home"><span class="wordmark__tile" aria-hidden="true"></span><span aria-hidden="true">lockspot</span></a>
+        <p class="tag">Draw a zone. Lock in.</p>
+        <p>Lockspot is made by Benjamin Hirsch.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul class="foot-links">
+          <li><a href="../">Home</a></li>
+          <li><a href="../privacy/">Privacy</a></li>
+          <li><a href="../terms/">Terms</a></li>
+          <li><a href="../support/" aria-current="page">Support</a></li>
+          <li><a href="../accessibility/">Accessibility</a></li>
+          <li><a href="../licenses/">Licenses</a></li>
+        </ul>
+      </nav>
+      <div>
+        <p>This site sets no cookies and runs no analytics.</p>
+        <p class="if-prelaunch">Apple and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries and regions. App Store is a service mark of Apple Inc.</p>
+        <p class="if-launched">Apple, the Apple logo and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries and regions. App Store is a service mark of Apple Inc.</p>
+        <p>Lockspot is not affiliated with or endorsed by Apple Inc.</p>
+      </div>
+    </div>
+    <p class="copy">&copy; 2026 Benjamin Hirsch</p>
+  </div>
+</footer>
+<!-- /shared:footer -->
 </body>
 </html>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bthirsch613.github.io/lockspot-site/sitemap.xml

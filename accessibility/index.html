@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" data-launched="false">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Accessibility · Lockspot</title>
+<meta name="description" content="How the Lockspot website and app work for people using a keyboard, a screen reader or Reduce Motion, what's still limited, and how to report a barrier.">
+<link rel="canonical" href="https://bthirsch613.github.io/lockspot-site/accessibility/">
+<meta name="theme-color" content="#0E0E10">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lockspot">
+<meta property="og:title" content="Accessibility · Lockspot">
+<meta property="og:description" content="How the Lockspot website and app work for people using a keyboard, a screen reader or Reduce Motion, what's still limited, and how to report a barrier.">
+<meta property="og:url" content="https://bthirsch613.github.io/lockspot-site/accessibility/">
+<meta property="og:image" content="https://bthirsch613.github.io/lockspot-site/assets/img/og.png">
+<meta property="og:image:alt" content="The Lockspot padlock mascot next to the words Draw a zone. Lock in.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preload" href="../assets/fonts/PlusJakartaSans-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/PlusJakartaSans-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/js-flag.js"></script>
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<!-- shared:header -->
+<a class="skip" href="#main">Skip to content</a>
+<div class="sentinel" aria-hidden="true"></div>
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="wordmark" href="../" aria-label="Lockspot home"><span class="wordmark__tile" aria-hidden="true"></span><span aria-hidden="true">lockspot</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <a class="nav-how" href="../#how">How it works</a>
+      <a class="hide-sm" href="../privacy/">Privacy</a>
+      <a class="hide-sm" href="../support/">Support</a>
+      <a class="btn btn--primary btn--sm header-get if-launched" href="https://apps.apple.com/app/id6824683190" aria-label="Get Lockspot on the App Store"><span class="hide-sm">Get Lockspot</span><span class="show-sm">Get</span></a>
+    </nav>
+  </div>
+</header>
+<!-- /shared:header -->
+<main id="main" class="page">
+  <div class="wrap">
+    <article class="prose">
+      <h1>Accessibility</h1>
+      <p class="meta">Last reviewed 19 October 2026</p>
+      <p class="intro">We aim for WCAG 2.2 Level AA on this website. It hasn't had an independent audit yet, so if something gets in your way, please tell us.</p>
+
+      <h2 id="site">What this website does</h2>
+      <ul>
+        <li>Every page has landmarks (header, navigation, main content, footer), one main heading and headings in order, so you can jump around with a screen reader.</li>
+        <li>Every page starts with a "Skip to content" link.</li>
+        <li>The pictures of Lockspot's screens have text alternatives that describe what each screen shows.</li>
+        <li>Everything works with a keyboard, including the questions on the home page and the hold-to-lock-in demo: press Space or Enter once and the ring fills by itself, and Escape stops it. A screen reader's double-tap works the same way.</li>
+        <li>Keyboard focus is always visible, with a purple outline, and it never hides under the sticky header.</li>
+        <li>If you turn on Reduce Motion, animations become still, finished pictures, and the meme card doesn't change by itself. The hold-to-lock-in ring still fills, because it shows your progress. Where the meme card does change on its own, it has a Pause button and stops after one round.</li>
+        <li>Text on these pages meets at least 4.5:1 contrast (WCAG AA). Body text is #C7C7CC on #0E0E10, about 11:1.</li>
+        <li>Pages reflow to a 320-pixel-wide screen without sideways scrolling, and text can be zoomed to 200%.</li>
+        <li>The site sets no cookies and has no pop-ups.</li>
+      </ul>
+
+      <h2 id="app">In the Lockspot app</h2>
+      <ul>
+        <li>You don't have to draw a shape to make a zone. "Use a block around me" makes a zone about 60 m across around where you are.</li>
+        <li>Hold to lock in blocks your apps anywhere, with no drawing and no location needed.</li>
+      </ul>
+
+      <h2 id="limits">Known limits</h2>
+      <ul>
+        <li>Drawing a custom zone shape needs a finger on the map. If that's hard for you, use "Use a block around me" or Hold to lock in instead.</li>
+      </ul>
+
+      <h2 id="report">Report a barrier</h2>
+      <p>If any part of this site or the app is hard to use, <a href="https://github.com/bthirsch613/lockspot-site/issues/new">tell us on GitHub</a>. Say which page or screen, what you were trying to do, and what you use (for example a screen reader, switch control or zoom). Questions there are public, so leave out personal details. A private email address will be added here.</p>
+    </article>
+  </div>
+</main>
+<!-- shared:footer -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div>
+        <a class="wordmark" href="../" aria-label="Lockspot home"><span class="wordmark__tile" aria-hidden="true"></span><span aria-hidden="true">lockspot</span></a>
+        <p class="tag">Draw a zone. Lock in.</p>
+        <p>Lockspot is made by Benjamin Hirsch.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul class="foot-links">
+          <li><a href="../">Home</a></li>
+          <li><a href="../privacy/">Privacy</a></li>
+          <li><a href="../terms/">Terms</a></li>
+          <li><a href="../support/">Support</a></li>
+          <li><a href="../accessibility/" aria-current="page">Accessibility</a></li>
+          <li><a href="../licenses/">Licenses</a></li>
+        </ul>
+      </nav>
+      <div>
+        <p>This site sets no cookies and runs no analytics.</p>
+        <p class="if-prelaunch">Apple and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries and regions. App Store is a service mark of Apple Inc.</p>
+        <p class="if-launched">Apple, the Apple logo and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries and regions. App Store is a service mark of Apple Inc.</p>
+        <p>Lockspot is not affiliated with or endorsed by Apple Inc.</p>
+      </div>
+    </div>
+    <p class="copy">&copy; 2026 Benjamin Hirsch</p>
+  </div>
+</footer>
+<!-- /shared:footer -->
+</body>
+</html>
