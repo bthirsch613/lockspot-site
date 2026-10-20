@@ -46,7 +46,7 @@
   <div class="wrap">
     <article class="prose">
       <h1>Privacy policy</h1>
-      <p class="meta">Effective 19 October 2026 · Updated for memberships · Covers the Lockspot app (version 1) and this website.</p>
+      <p class="meta">Effective 19 October 2026 · Updated 20 October 2026 · Covers the Lockspot app (version 1) and this website.</p>
       <p class="intro">Lockspot is an iPhone app that blocks the apps you choose while you're inside places you draw on a map, or while you hold to lock in. It's free to download, and after a short setup it needs a Lockspot Pro membership. Benjamin Hirsch, an individual developer in Highland, Utah, USA, makes Lockspot and runs this website.</p>
 
       <nav class="toc" aria-labelledby="toc-title">
@@ -59,6 +59,7 @@
           <li><a href="#providers">The services that handle it</a></li>
           <li><a href="#retention">How long it's kept</a></li>
           <li><a href="#apple">Apple's services</a></li>
+          <li><a href="#notifications">Notifications</a></li>
           <li><a href="#never">What we never do</a></li>
           <li><a href="#controls">Your controls</a></li>
           <li><a href="#website">This website</a></li>
@@ -88,7 +89,7 @@
       <p>You create a Lockspot account during setup. There are two ways to sign in, and neither uses a password.</p>
       <ul>
         <li><strong>Sign in with Apple.</strong> Lockspot asks Apple for no name and no email, so Apple shares only an ID that is the same across apps from Lockspot's developer and different for every other developer.</li>
-        <li><strong>Email and a 6-digit code.</strong> You type your email address, and Supabase, the sign-in service Lockspot uses, sends you a 6-digit code to type into the app. The email goes out through Resend, an email delivery service. Your email address is stored with your account so you can sign in again. Lockspot uses it only to sign you in, and doesn't send you marketing.</li>
+        <li><strong>Email and a 6-digit code.</strong> You type your email address, and Supabase, the sign-in service Lockspot uses, sends you a 6-digit code to type into the app. The email goes out through Resend, an email delivery service. The email shows a small animated padlock that your email app loads from this website, so GitHub, which hosts the site, receives that request (see <a href="#website">This website</a>); the email has no tracking pixel and no tracked links. Your email address is stored with your account so you can sign in again. Lockspot uses it only to sign you in, and doesn't send you marketing.</li>
       </ul>
       <p>Supabase stores the ID from Sign in with Apple, or your email address, with a Lockspot account ID, when the account was created and when you last signed in, and keeps standard security logs of sign-in requests.</p>
 
@@ -116,6 +117,16 @@
       <h2 id="apple">Apple's services</h2>
       <p>The map is Apple Maps. To show map tiles, your iPhone requests them from Apple, and Apple handles those requests under its own privacy policy. Sign in with Apple, payments and subscriptions are handled by Apple too. If you choose to share crash reports with Apple in iOS settings, Apple may pass anonymous crash data to developers; Lockspot doesn't add any crash reporting of its own.</p>
 
+      <h2 id="notifications">Notifications</h2>
+      <p>If you allow notifications, Lockspot can send you:</p>
+      <ul>
+        <li>a ping when a spot locks as you arrive, and a quiet note when you leave;</li>
+        <li>a ping when you're at a spot but nothing can lock, for example because no apps are picked or Screen Time access is off;</li>
+        <li>up to 2 setup reminders in your first days, only while a setup step is missing;</li>
+        <li>one reminder 2 days before a free trial ends, if you asked for it.</li>
+      </ul>
+      <p>Your iPhone creates and schedules every one of them. Lockspot doesn't use a push service, and nothing about your notifications is sent to us or to anyone else. You can turn each kind off in Lockspot's Settings.</p>
+
       <h2 id="never">What we never do</h2>
       <ul>
         <li>We never send your location, your zones, your app picks or your Screen Time data off your iPhone.</li>
@@ -128,6 +139,7 @@
       <h2 id="controls">Your controls</h2>
       <ul>
         <li><strong>Turn off location:</strong> Settings &gt; Apps &gt; Lockspot &gt; Location (on iOS 17 or earlier: Settings &gt; Lockspot &gt; Location). Zones stop working; holding to lock in still works.</li>
+        <li><strong>Turn off notifications:</strong> in Lockspot, open Settings &gt; Notifications, or in Settings on your iPhone, tap Notifications, then Lockspot.</li>
         <li><strong>Turn off Screen Time access:</strong> in Settings &gt; Screen Time, remove Lockspot's access. Blocking stops.</li>
         <li><strong>Cancel your membership:</strong> in Settings, tap your name, then Subscriptions &gt; Lockspot, or use Manage subscription in Lockspot. When a membership ends, Lockspot ends any lock-in and pauses every zone, so nothing stays blocked. Your zones stay on your iPhone in case you come back.</li>
         <li><strong>Delete your account:</strong> in Lockspot, open Settings &gt; Account &gt; Delete account, or tap the Account button at the top right of the membership screen. Deleting an account doesn't cancel an App Store subscription, so Lockspot offers Manage subscription first. It then deletes your account from Supabase and your record from RevenueCat, and signs you out on your iPhone. If you signed in with Apple, it asks you to confirm with Apple once more and removes Lockspot's Sign in with Apple access. If that Apple step can't finish, your account is still deleted, and Lockspot shows you how to remove its access yourself: Settings &gt; your name &gt; Sign in with Apple &gt; Lockspot &gt; Delete.</li>
@@ -167,6 +179,7 @@
 
       <h2 id="changes">Changes</h2>
       <p>If a future version sends more data off your iPhone, we'll update this policy before that version ships and change the effective date above.</p>
+      <p>20 October 2026: added <a href="#notifications">Notifications</a>, because the app can now send the pings and reminders described there, and explained the picture in sign-in code emails.</p>
       <p>19 October 2026, updated for memberships: Lockspot now needs an account and a Lockspot Pro membership, so this policy now explains your account, your membership, the services that handle them, how long they're kept and how to delete them. Earlier that day, the policy was extended to cover this website as well as the app.</p>
 
       <h2 id="contact">Contact</h2>
