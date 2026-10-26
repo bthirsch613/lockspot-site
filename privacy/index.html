@@ -46,7 +46,7 @@
   <div class="wrap">
     <article class="prose">
       <h1>Privacy policy</h1>
-      <p class="meta">Effective 19 October 2026 · Updated 20 October 2026 · Covers the Lockspot app (version 1) and this website.</p>
+      <p class="meta">Effective 19 October 2026 · Updated 26 October 2026 · Covers the Lockspot app (version 1) and this website.</p>
       <p class="intro">Lockspot is an iPhone app that blocks the apps you choose while you're inside places you draw on a map, or while you hold to lock in. It's free to download, and after a short setup it needs a Lockspot Pro membership. Benjamin Hirsch, an individual developer in Highland, Utah, USA, makes Lockspot and runs this website.</p>
 
       <nav class="toc" aria-labelledby="toc-title">
@@ -98,13 +98,13 @@
       <p>You buy Lockspot Pro through Apple's App Store, and Apple never gives Lockspot your payment details. RevenueCat, the service Lockspot uses to check memberships, receives your Lockspot account ID and the purchase history Apple shares for Lockspot: which plan you have, when it started, renews or ended, whether it began with a free trial, any refund, and the App Store country and price. Lockspot uses this to unlock the app, to restore your membership on another iPhone, and to see overall totals, such as how many people subscribed this month. It never sees your zones, apps or location.</p>
 
       <h2 id="providers">The services that handle it</h2>
-      <p>Supabase, Resend and RevenueCat handle your account and purchase data on Lockspot's behalf, as service providers (processors), and only to run Lockspot. Neither kind of data is used for advertising or to track you across other companies' apps or websites, and neither is sold.</p>
+      <p>Supabase, Resend and RevenueCat handle your account and purchase data on Lockspot's behalf, as service providers (processors), and only to run Lockspot. Each of them is bound by its terms with Lockspot to use this data only to provide its service and to protect it at least as well as this policy describes. Neither kind of data is used for advertising or to track you across other companies' apps or websites, and neither is sold.</p>
       <ul>
         <li><strong>Supabase</strong> runs sign-in and stores accounts. See <a href="https://supabase.com/privacy">Supabase's privacy policy</a>.</li>
         <li><strong>Resend</strong> delivers the sign-in code emails, so it receives your email address and the email with your code. It isn't used if you sign in with Apple. See <a href="https://resend.com/legal/privacy-policy">Resend's privacy policy</a>.</li>
         <li><strong>RevenueCat</strong> checks App Store purchases and keeps your purchase history. See <a href="https://www.revenuecat.com/privacy/">RevenueCat's privacy policy</a>.</li>
       </ul>
-      <p>Like any online service, they also receive the details every internet connection carries, such as your IP address and your app and iOS version. Lockspot doesn't use these to locate you.</p>
+      <p>Like any online service, they also receive the details every internet connection carries, such as your IP address and your app and iOS version. RevenueCat also receives an identifier iOS gives Lockspot for your iPhone (an app-specific ID, not the advertising identifier) to keep your purchases together. Lockspot doesn't use any of these to locate you or to track you.</p>
 
       <h2 id="retention">How long it's kept</h2>
       <ul>
@@ -142,7 +142,7 @@
         <li><strong>Turn off location:</strong> Settings &gt; Apps &gt; Lockspot &gt; Location (on iOS 17 or earlier: Settings &gt; Lockspot &gt; Location). Zones stop working; holding to lock in still works.</li>
         <li><strong>Turn off notifications:</strong> in Lockspot, open Settings &gt; Notifications, or in Settings on your iPhone, tap Notifications, then Lockspot.</li>
         <li><strong>Turn off Screen Time access:</strong> in Settings &gt; Screen Time, remove Lockspot's access. Blocking stops.</li>
-        <li><strong>Cancel your membership:</strong> in Settings, tap your name, then Subscriptions &gt; Lockspot, or use Manage subscription in Lockspot. When a membership ends, Lockspot ends any lock-in and pauses every zone, so nothing stays blocked. Your zones stay on your iPhone in case you come back.</li>
+        <li><strong>Cancel your membership:</strong> in Settings, tap your name, then Subscriptions &gt; Lockspot, or use Manage subscription in Lockspot. When a membership ends, Lockspot ends any lock-in and pauses every zone as soon as it sees the change, at the latest the next time you open it. Your zones stay on your iPhone in case you come back.</li>
         <li><strong>Delete your account:</strong> in Lockspot, open Settings &gt; Account &gt; Delete account, or tap the Account button at the top right of the membership screen. Deleting an account doesn't cancel an App Store subscription, so Lockspot offers Manage subscription first. It then deletes your account from Supabase and your record from RevenueCat, and signs you out on your iPhone. It also erases your zones, picked apps, history and notification settings from that iPhone. Screen Time access stays on until you turn it off in Settings &gt; Screen Time. If you signed in with Apple, it asks you to confirm with Apple once more and removes Lockspot's Sign in with Apple access. If that Apple step can't finish, your account is still deleted, and Lockspot shows you how to remove its access yourself: Settings &gt; your name &gt; Sign in with Apple &gt; Lockspot &gt; Delete.</li>
         <li><strong>Stop using Sign in with Apple:</strong> Settings &gt; your name &gt; Sign in with Apple &gt; Lockspot &gt; Delete. Lockspot signs you out on that iPhone. This doesn't delete your account data; use Delete account for that.</li>
         <li><strong>Delete the app:</strong> every block is lifted and all data the app stored on your iPhone is removed. Deleting the app doesn't delete your account or cancel your membership, so do those first.</li>
@@ -164,7 +164,8 @@
       <p>No one else receives data through this site.</p>
 
       <h2 id="support">Support questions</h2>
-      <p>Support questions go through GitHub Issues on this site's repository. Asking there needs a GitHub account, and GitHub requires its users to be at least 13. Questions, replies and usernames are public, and GitHub's Privacy Statement applies to them, so leave out personal details about yourself or anyone else, including your email address and receipts.</p>
+      <p>For anything private, such as billing, your account or a privacy request, email <a href="mailto:support@getlockspot.com">support@getlockspot.com</a>. We keep those emails only as long as we need them to help you.</p>
+      <p>General questions can also go through GitHub Issues on this site's repository. Asking there needs a GitHub account, and GitHub requires its users to be at least 13. Questions, replies and usernames are public, and GitHub's Privacy Statement applies to them, so leave out personal details about yourself or anyone else, including your email address and receipts.</p>
       <p>You can edit your own posts at any time. If you want a post of yours removed, reply on it and ask, and we'll delete it.</p>
 
       <h2 id="rights">Who's responsible and your rights</h2>
@@ -172,20 +173,21 @@
       <p>Supabase, Resend and RevenueCat process account and membership data for us. GitHub runs its server logs as its own controller, under GitHub's Privacy Statement and its own retention rules. We never receive them.</p>
       <p>The personal data we handle is your Lockspot account and membership data, and anything you post on our GitHub repository. We use account and membership data to provide the membership you signed up for (GDPR Article 6(1)(b), performance of a contract). For support questions, the legal basis is our legitimate interest in answering them and helping the people who use Lockspot (GDPR Article 6(1)(f)). Questions stay on GitHub until they're deleted.</p>
       <p>You have the right to ask for access to personal data we hold about you, and to have it corrected (rectification) or deleted (erasure). You can ask us to restrict how it's used, object to how it's used, and give it to you in a portable format. You can delete your account and its data yourself in the app at any time. You can also complain to your local data protection authority. Supabase, Resend, RevenueCat and GitHub may store and process data in the United States, under the safeguards described in their own privacy policies and data protection terms.</p>
-      <p>A private email address for privacy requests will be added to this page. Until then, open a question on GitHub, leave out personal details, and say you'd like to make a privacy request.</p>
+      <p>To make a privacy request, email <a href="mailto:support@getlockspot.com">support@getlockspot.com</a> and say what you'd like us to do. We answer within 30 days, usually much sooner.</p>
 
       <h2 id="children">Children</h2>
       <p>Lockspot is a self-control tool for the person using the phone, and it isn't directed at children under 13. It doesn't ask anyone for a name or an age, and it asks for an email address only if you choose to sign in with one. If you believe a child under 13 has created a Lockspot account, delete it in the app or contact us below and we'll delete it.</p>
-      <p>This website doesn't knowingly collect information from children either. The GitHub support channel is for people 13 and older; if you're younger, ask a parent or guardian to get in touch for you.</p>
+      <p>This website doesn't knowingly collect information from children either. The GitHub support channel is for people 13 and older. Parents and guardians can email <a href="mailto:support@getlockspot.com">support@getlockspot.com</a> to have a child's account deleted.</p>
 
       <h2 id="changes">Changes</h2>
       <p>If a future version sends more data off your iPhone, we'll update this policy before that version ships and change the effective date above.</p>
+      <p>26 October 2026: added a private support email, said that the services above must protect your data as this policy does, mentioned the app-specific ID RevenueCat receives, and explained when zones pause after a membership ends.</p>
       <p>20 October 2026, later: explained the place search used while drawing your first spot, that your setup answers stay on your iPhone, and what deleting your account erases from your iPhone.</p>
       <p>20 October 2026: added <a href="#notifications">Notifications</a>, because the app can now send the pings and reminders described there, and explained the picture in sign-in code emails.</p>
       <p>19 October 2026, updated for memberships: Lockspot now needs an account and a Lockspot Pro membership, so this policy now explains your account, your membership, the services that handle them, how long they're kept and how to delete them. Earlier that day, the policy was extended to cover this website as well as the app.</p>
 
       <h2 id="contact">Contact</h2>
-      <p>Questions about privacy: <a href="https://github.com/bthirsch613/lockspot-site/issues/new">open a question on GitHub</a>. Please don't include personal details there, because questions are public.</p>
+      <p>Questions about privacy: email <a href="mailto:support@getlockspot.com">support@getlockspot.com</a>. You can also <a href="https://github.com/bthirsch613/lockspot-site/issues/new">open a question on GitHub</a>, but questions there are public, so leave out personal details.</p>
       <p>Lockspot is made by Benjamin Hirsch.</p>
     </article>
   </div>
