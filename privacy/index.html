@@ -56,6 +56,7 @@
           <li><a href="#on-your-iphone">What stays on your iPhone</a></li>
           <li><a href="#account">Your account</a></li>
           <li><a href="#membership">Your membership</a></li>
+          <li><a href="#reports">Usage and crash reports</a></li>
           <li><a href="#providers">The services that handle it</a></li>
           <li><a href="#retention">How long it's kept</a></li>
           <li><a href="#apple">Apple's services</a></li>
@@ -77,6 +78,7 @@
         <h2 id="short">The short version</h2>
         <p>Your location, the zones you draw, the apps you pick, your Screen Time choices, and your streak and recap stay on your iPhone. They're never sent to us or to anyone else.</p>
         <p>Two things do leave your iPhone, because a membership needs them: your account (an ID from Sign in with Apple, or your email address if you sign in with a code) and your Lockspot purchase history from the App Store. Both are linked to your account and used only to run Lockspot, never to show you ads or to track you. From version 1.1, if you downloaded Lockspot by tapping an Apple ad, your purchase record also notes which ad it was. You can delete your account in the app at any time.</p>
+        <p>From version 1.1, Lockspot also sends usage and crash reports, so we can find and fix problems: which screens you open, how setup, sign-in and purchases went, and the technical details of errors, linked to your account. They never include your location, your zones, the apps you pick, your Screen Time data or your setup answers, and nothing is sent while Lockspot runs in the background. You can turn them off in Lockspot's Settings. <a href="#reports">Usage and crash reports</a> explains.</p>
         <p>This website sets no cookies and runs no analytics. GitHub, which hosts it, keeps standard server logs; <a href="#website">This website</a> explains.</p>
       </section>
 
@@ -84,7 +86,7 @@
       <p><strong>Location.</strong> If you allow it, Lockspot uses your location to show you on the map and to check whether you're inside a zone you drew. With "Always" access, iOS wakes Lockspot near your zones so it can check in the background. Your location and the shapes you draw are processed and stored only on your iPhone. They're never sent to us or to anyone else, and your account never holds them. To draw the map, your iPhone asks Apple Maps for the map tiles of the area on screen (see <a href="#apple">Apple's services</a>).</p>
       <p><strong>Screen Time choices.</strong> Lockspot uses Apple's Screen Time framework (Family Controls) to block the apps you pick. iOS gives Lockspot anonymous tokens for those apps, not their names, and Lockspot keeps them on your iPhone. Lockspot doesn't read or send your app usage, and Apple's rules don't let apps send Screen Time data off your iPhone.</p>
       <p><strong>Your setup answers.</strong> The answers you give while setting up, such as where your phone gets you, how long you're on it a day and your daily goal, stay on your iPhone. Lockspot uses them only to show you your own numbers and to suggest your first spot. They're never sent to us or to anyone else.</p>
-      <p><strong>Your activity in the app.</strong> Your zones, lock-in sessions, streaks, if-then plans and weekly recap are saved on your iPhone so the app works. They never leave it unless you choose to share your recap yourself, for example through the iOS share sheet.</p>
+      <p><strong>Your activity in the app.</strong> Your zones, lock-in sessions, streaks, if-then plans and weekly recap are saved on your iPhone so the app works. They never leave it unless you choose to share your recap yourself, for example through the iOS share sheet. Usage and crash reports (below) can say which of Lockspot's screens you open, never what's in them.</p>
 
       <h2 id="account">Your account</h2>
       <p>You create a Lockspot account during setup. There are two ways to sign in, and neither uses a password.</p>
@@ -98,18 +100,26 @@
       <p>You buy Lockspot Pro through Apple's App Store, and Apple never gives Lockspot your payment details. RevenueCat, the service Lockspot uses to check memberships, receives your Lockspot account ID and the purchase history Apple shares for Lockspot: which plan you have, when it started, renews or ended, whether it began with a free trial, any refund, and the App Store country and price. Lockspot uses this to unlock the app, to restore your membership on another iPhone, and to see overall totals, such as how many people subscribed this month. It never sees your zones, apps or location.</p>
       <p>From version 1.1, if you downloaded Lockspot by tapping an ad on the App Store, Apple also tells RevenueCat which of Lockspot's ad campaigns it was, through Apple's AdServices. Lockspot uses this only to see which of its own ads lead to memberships. Apple says AdServices isn't tracking, and what it shares doesn't include the advertising identifier.</p>
 
+      <h2 id="reports">Usage and crash reports</h2>
+      <p>From version 1.1, to find and fix problems, Lockspot sends PostHog, an analytics service, a short report when you open Lockspot or move between its screens, go through setup or sign in, answer one of iOS's permission prompts (only whether you allowed it), see a card saying blocking isn't fully set up (which setting is missing), view the membership screen, buy or restore, or tap Email support. It also reports when prices don't load, when you're signed out without asking to be, when deleting your account fails, and when something goes wrong in the app, with the technical details of the error.</p>
+      <p>Each report carries a random ID made for this install of Lockspot and, once you sign in, your Lockspot account ID, along with your app and iOS version, your iPhone model and its language. PostHog doesn't keep your IP address, and Lockspot doesn't use it to locate you. RevenueCat also passes your membership events, such as a trial starting, a renewal or a cancellation, to PostHog under the same account ID, so we can see where people stop between setup and subscribing.</p>
+      <p>Reports never include your location, your zones or their names, the apps you pick, your Screen Time data, your setup answers, your lock-ins, streaks or recap, or your email address. Lockspot sends no reports while it runs in the background, so a report can't show when you arrive at or leave a zone. An error that happens then waits until you next open Lockspot, and goes without its time.</p>
+      <p>You can turn reports off at any time in Lockspot's Settings, under Privacy. If you email support from the app, the email includes a support code (your Lockspot account ID) so we can find what went wrong; you can delete it before you send.</p>
+
       <h2 id="providers">The services that handle it</h2>
-      <p>Supabase, Resend and RevenueCat handle your account and purchase data on Lockspot's behalf, as service providers (processors), and only to run Lockspot. Each of them is bound by its terms with Lockspot to use this data only to provide its service and to protect it at least as well as this policy describes. None of this data is used to show you ads or to track you across other companies' apps or websites, and none of it is sold.</p>
+      <p>Supabase, Resend, RevenueCat and PostHog handle your account, purchase and usage data on Lockspot's behalf, as service providers (processors), and only to run Lockspot. Each of them is bound by its terms with Lockspot to use this data only to provide its service and to protect it at least as well as this policy describes. None of this data is used to show you ads or to track you across other companies' apps or websites, and none of it is sold.</p>
       <ul>
         <li><strong>Supabase</strong> runs sign-in and stores accounts. See <a href="https://supabase.com/privacy">Supabase's privacy policy</a>.</li>
         <li><strong>Resend</strong> delivers the sign-in code emails, so it receives your email address and the email with your code. It isn't used if you sign in with Apple. See <a href="https://resend.com/legal/privacy-policy">Resend's privacy policy</a>.</li>
         <li><strong>RevenueCat</strong> checks App Store purchases and keeps your purchase history. See <a href="https://www.revenuecat.com/privacy/">RevenueCat's privacy policy</a>.</li>
+        <li><strong>PostHog</strong> receives and stores the usage and crash reports, on servers in the United States. See <a href="https://posthog.com/privacy">PostHog's privacy policy</a>.</li>
       </ul>
-      <p>Like any online service, they also receive the details every internet connection carries, such as your IP address and your app and iOS version. RevenueCat also receives an identifier iOS gives Lockspot for your iPhone (an app-specific ID, not the advertising identifier) to keep your purchases together. Lockspot doesn't use any of these to locate you or to track you.</p>
+      <p>Like any online service, they also receive the details every internet connection carries, such as your IP address and your app and iOS version. RevenueCat also receives an identifier iOS gives Lockspot for your iPhone (an app-specific ID, not the advertising identifier) to keep your purchases together. Lockspot doesn't use any of these to locate you or to track you, and PostHog is set to throw IP addresses away.</p>
 
       <h2 id="retention">How long it's kept</h2>
       <ul>
         <li>Your account and your purchase history are kept while you have an account. Deleting your account deletes them from Supabase and RevenueCat (see <a href="#controls">Your controls</a>).</li>
+        <li>PostHog keeps usage and crash reports for up to a year. Deleting your account deletes your reports from PostHog too: your profile within minutes, and the reports themselves in PostHog's weekly clean-up.</li>
         <li>Supabase's security logs of sign-in requests expire on Supabase's own schedule.</li>
         <li>Resend keeps a delivery record of each code email (the address, the time and whether it arrived) for a limited time on its own schedule.</li>
         <li>What the app stores on your iPhone stays there until you delete it or delete the app.</li>
@@ -117,7 +127,7 @@
       </ul>
 
       <h2 id="apple">Apple's services</h2>
-      <p>The map is Apple Maps. To show map tiles, your iPhone requests them from Apple, and Apple handles those requests under its own privacy policy. If you search for a place while drawing your first spot, the text you type goes to Apple's map service to find it. Lockspot doesn't keep the search or send it anywhere else. Sign in with Apple, payments and subscriptions are handled by Apple too. If you choose to share crash reports with Apple in iOS settings, Apple may pass anonymous crash data to developers; Lockspot doesn't add any crash reporting of its own.</p>
+      <p>The map is Apple Maps. To show map tiles, your iPhone requests them from Apple, and Apple handles those requests under its own privacy policy. If you search for a place while drawing your first spot, the text you type goes to Apple's map service to find it. Lockspot doesn't keep the search or send it anywhere else. Sign in with Apple, payments and subscriptions are handled by Apple too. If you choose to share crash reports with Apple in iOS settings, Apple may pass anonymous crash data to developers. From version 1.1, Lockspot also sends its own crash reports to PostHog (see <a href="#reports">Usage and crash reports</a>).</p>
 
       <h2 id="notifications">Notifications</h2>
       <p>If you allow notifications, Lockspot can send you:</p>
@@ -134,7 +144,8 @@
         <li>We never send your location, your zones, your app picks or your Screen Time data off your iPhone.</li>
         <li>We don't sell personal data or share it for advertising.</li>
         <li>We don't track you across apps or websites, and Lockspot never asks for permission to track you.</li>
-        <li>We don't put ads in Lockspot or use ad networks' tools, and we don't measure how you use the app. The only ad data Lockspot keeps is which Apple ad, if any, led to your download (see <a href="#membership">Your membership</a>).</li>
+        <li>We don't put ads in Lockspot or use ad networks' tools. The only ad data Lockspot keeps is which Apple ad, if any, led to your download (see <a href="#membership">Your membership</a>).</li>
+        <li>We measure how Lockspot's screens are used only to find and fix problems, never for ads, and you can turn that off (see <a href="#reports">Usage and crash reports</a>).</li>
         <li>We don't ask for your name or a password, and we ask for your email address only if you choose to sign in with it.</li>
       </ul>
 
@@ -143,8 +154,9 @@
         <li><strong>Turn off location:</strong> Settings &gt; Apps &gt; Lockspot &gt; Location (on iOS 17 or earlier: Settings &gt; Lockspot &gt; Location). Zones stop working; holding to lock in still works.</li>
         <li><strong>Turn off notifications:</strong> in Lockspot, open Settings &gt; Notifications, or in Settings on your iPhone, tap Notifications, then Lockspot.</li>
         <li><strong>Turn off Screen Time access:</strong> in Settings &gt; Screen Time, remove Lockspot's access. Blocking stops.</li>
+        <li><strong>Turn off usage and crash reports:</strong> in Lockspot, open Settings, and under Privacy switch off Share usage and crash reports.</li>
         <li><strong>Cancel your membership:</strong> in Settings, tap your name, then Subscriptions &gt; Lockspot, or use Manage subscription in Lockspot. When a membership ends, Lockspot ends any lock-in and pauses every zone as soon as it sees the change, at the latest the next time you open it. Your zones stay on your iPhone in case you come back.</li>
-        <li><strong>Delete your account:</strong> in Lockspot, open Settings &gt; Account &gt; Delete account, or tap the Account button at the top right of the membership screen. Deleting an account doesn't cancel an App Store subscription, so Lockspot offers Manage subscription first. It then deletes your account from Supabase and your record from RevenueCat, and signs you out on your iPhone. It also erases your zones, picked apps, history and notification settings from that iPhone. Screen Time access stays on until you turn it off in Settings &gt; Screen Time. If you signed in with Apple, it asks you to confirm with Apple once more and removes Lockspot's Sign in with Apple access. If that Apple step can't finish, your account is still deleted, and Lockspot shows you how to remove its access yourself: Settings &gt; your name &gt; Sign in with Apple &gt; Lockspot &gt; Delete.</li>
+        <li><strong>Delete your account:</strong> in Lockspot, open Settings &gt; Account &gt; Delete account, or tap the Account button at the top right of the membership screen. Deleting an account doesn't cancel an App Store subscription, so Lockspot offers Manage subscription first. It then deletes your account from Supabase, your record from RevenueCat and your usage and crash reports from PostHog, and signs you out on your iPhone. It also erases your zones, picked apps, history and notification settings from that iPhone. Screen Time access stays on until you turn it off in Settings &gt; Screen Time. If you signed in with Apple, it asks you to confirm with Apple once more and removes Lockspot's Sign in with Apple access. If that Apple step can't finish, your account is still deleted, and Lockspot shows you how to remove its access yourself: Settings &gt; your name &gt; Sign in with Apple &gt; Lockspot &gt; Delete.</li>
         <li><strong>Stop using Sign in with Apple:</strong> Settings &gt; your name &gt; Sign in with Apple &gt; Lockspot &gt; Delete. Lockspot signs you out on that iPhone. This doesn't delete your account data; use Delete account for that.</li>
         <li><strong>Delete the app:</strong> every block is lifted and all data the app stored on your iPhone is removed. Deleting the app doesn't delete your account or cancel your membership, so do those first.</li>
       </ul>
@@ -171,9 +183,9 @@
 
       <h2 id="rights">Who's responsible and your rights</h2>
       <p>Benjamin Hirsch, an individual developer in Highland, Utah, USA, makes Lockspot and runs this website, and is responsible for both.</p>
-      <p>Supabase, Resend and RevenueCat process account and membership data for us. GitHub runs its server logs as its own controller, under GitHub's Privacy Statement and its own retention rules. We never receive them.</p>
-      <p>The personal data we handle is your Lockspot account and membership data, and anything you post on our GitHub repository. We use account and membership data to provide the membership you signed up for (GDPR Article 6(1)(b), performance of a contract). For support questions, the legal basis is our legitimate interest in answering them and helping the people who use Lockspot (GDPR Article 6(1)(f)). Questions stay on GitHub until they're deleted.</p>
-      <p>You have the right to ask for access to personal data we hold about you, and to have it corrected (rectification) or deleted (erasure). You can ask us to restrict how it's used, object to how it's used, and give it to you in a portable format. You can delete your account and its data yourself in the app at any time. You can also complain to your local data protection authority. Supabase, Resend, RevenueCat and GitHub may store and process data in the United States, under the safeguards described in their own privacy policies and data protection terms.</p>
+      <p>Supabase, Resend, RevenueCat and PostHog process account, membership and usage data for us. GitHub runs its server logs as its own controller, under GitHub's Privacy Statement and its own retention rules. We never receive them.</p>
+      <p>The personal data we handle is your Lockspot account and membership data, and anything you post on our GitHub repository. We use account and membership data to provide the membership you signed up for (GDPR Article 6(1)(b), performance of a contract). For support questions, the legal basis is our legitimate interest in answering them and helping the people who use Lockspot (GDPR Article 6(1)(f)). For usage and crash reports, it's our legitimate interest in finding and fixing problems in Lockspot (GDPR Article 6(1)(f)), and you can turn them off in Settings at any time. Questions stay on GitHub until they're deleted.</p>
+      <p>You have the right to ask for access to personal data we hold about you, and to have it corrected (rectification) or deleted (erasure). You can ask us to restrict how it's used, object to how it's used, and give it to you in a portable format. You can delete your account and its data yourself in the app at any time. You can also complain to your local data protection authority. Supabase, Resend, RevenueCat, PostHog and GitHub may store and process data in the United States, under the safeguards described in their own privacy policies and data protection terms.</p>
       <p>To make a privacy request, email <a href="mailto:support@getlockspot.com">support@getlockspot.com</a> and say what you'd like us to do. We answer within 30 days, usually much sooner.</p>
 
       <h2 id="children">Children</h2>
@@ -182,6 +194,7 @@
 
       <h2 id="changes">Changes</h2>
       <p>If a future version sends more data off your iPhone, we'll update this policy before that version ships and change the effective date above.</p>
+      <p>29 October 2026, later: from version 1.1, Lockspot sends usage and crash reports to PostHog, which you can turn off in Settings (see <a href="#reports">Usage and crash reports</a>), and deleting your account deletes them too.</p>
       <p>29 October 2026: from version 1.1, your purchase record notes which Apple ad, if any, led to your download (see <a href="#membership">Your membership</a>).</p>
       <p>26 October 2026: added a private support email, said that the services above must protect your data as this policy does, mentioned the app-specific ID RevenueCat receives, and explained when zones pause after a membership ends.</p>
       <p>20 October 2026, later: explained the place search used while drawing your first spot, that your setup answers stay on your iPhone, and what deleting your account erases from your iPhone.</p>
